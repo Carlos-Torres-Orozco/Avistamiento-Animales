@@ -1,0 +1,180 @@
+/* Estilo general */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: #f4f9f6;
+  color: #333;
+}
+
+/* Encabezado */
+header {
+  background-color: #2e7d32;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8em;
+}
+
+/* Menú de navegación */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  margin: 5px 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #a5d6a7;
+}
+
+/* Contenido principal */
+main {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.intro {
+  background-color: white;
+  padding: 25px;
+  margin: 0 auto;
+  max-width: 700px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.intro h2 {
+  color: #2e7d32;
+}
+
+/* Pie de página */
+footer {
+  background-color: #1b5e20;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9em;
+}
+
+/* ====== ESTILOS DE LA PÁGINA DE GESTIÓN ====== */
+
+.menu-principal {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.modulos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.modulo {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.modulo:hover {
+  transform: scale(1.05);
+}
+
+.modulo h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.modulo ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modulo ul li {
+  margin: 8px 0;
+}
+
+.modulo ul li a {
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.modulo ul li a:hover {
+  color: #005fa3;
+}
+/* ====== BOTONES DE MÓDULOS ====== */
+
+.botones-modulos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.botones-modulos button {
+  background-color: #0077cc;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.botones-modulos button:hover {
+  background-color: #005fa3;
+  transform: translateY(-3px);
+}
+
+/* ====== BOTÓN CENTRAL DEL INICIO ====== */
+.boton-central {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.boton-central button {
+  background-color: #0077cc;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.boton-central button:hover {
+  background-color: #005fa3;
+  transform: translateY(-3px);
+}

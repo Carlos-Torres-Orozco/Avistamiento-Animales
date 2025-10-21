@@ -1,0 +1,32 @@
+/* ====== ESTILO ESPECÍFICO DE ESPECIES ====== */
+
+/* Fondo suave verde claro para este módulo */
+body {
+  background-color: #e8f5e9;
+}
+
+.submenu {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.submenu button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.submenu button:hover {
+  background-color: #388e3c;
+}
+
+.contenido-dinamico {
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f1f8e9;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}

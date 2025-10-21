@@ -1,0 +1,57 @@
+/* ====== ESTILO GENERAL ====== */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fdfdfd;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header, footer {
+  background-color: #0077cc;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a.activo {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
+
+.contenido h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Botones genéricos */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 25px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+}
