@@ -1,0 +1,63 @@
+/* ===== FORMULARIO ===== */
+.formulario {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.campo label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #0d47a1;
+}
+
+.campo input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+.botones-formulario {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.boton.agregar {
+  background-color: #1e88e5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.boton.agregar:hover {
+  background-color: #1565c0;
+}
+
+.boton.cancelar {
+  background-color: #e0e0e0;
+  color: #212121;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boton.cancelar:hover {
+  background-color: #bdbdbd;
+}

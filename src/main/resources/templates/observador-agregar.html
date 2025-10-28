@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Observador</title>
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+</head>
+<body>
+
+<header>
+  <h1>Agregar Observador</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/observadores" class="activo">Observadores</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Formulario de Nuevo Observador</h2>
+    <form th:action="@{/observadores/guardar}" th:object="${observador}" method="post" class="formulario">
+      
+      <div class="campo">
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" placeholder="Nombre completo" required />
+      </div>
+      
+      <div class="campo">
+        <label>Apellido:</label>
+        <input type="text" th:field="*{apellido}" placeholder="Apellido" required />
+      </div>
+
+      <div class="campo">
+        <label>Correo:</label>
+        <input type="email" th:field="*{correo}" placeholder="correo@ejemplo.com" required />
+      </div>
+
+      <div class="campo">
+        <label>País:</label>
+        <input type="text" th:field="*{pais}" placeholder="País de origen" required />
+      </div>
+
+      <div class="campo">
+        <label>Institución:</label>
+        <input type="text" th:field="*{institucion}" placeholder="Institución a la que pertenece" required />
+      </div>
+
+      <div class="botones-formulario">
+        <button type="submit" class="boton agregar">Guardar</button>
+        <a href="/observadores" class="boton cancelar">Cancelar</a>
+      </div>
+      
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>

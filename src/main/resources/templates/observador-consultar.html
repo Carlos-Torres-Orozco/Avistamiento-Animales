@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Observadores</title>
+  <link rel="stylesheet" href="/style/style-general.css">
+  <link rel="stylesheet" href="/style/style-tablas.css">
+</head>
+<body>
+
+<header>
+  <h1>Lista de Observadores</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/observadores" class="activo">Observadores</a></li>
+      <li><a href="/observadores/agregar">Agregar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Registros de Observadores</h2>
+
+    <table class="tabla-datos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>País</th>
+          <th>Institución</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="obs : ${observadores}">
+          <td th:text="${obs.idObservador}"></td>
+          <td th:text="${obs.nombre}"></td>
+          <td th:text="${obs.apellido}"></td>
+          <td th:text="${obs.correo}"></td>
+          <td th:text="${obs.pais}"></td>
+          <td th:text="${obs.institucion}"></td>
+          <td>
+            <a th:href="@{'/observadores/eliminar/' + ${obs.idObservador}}" class="boton eliminar">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>
