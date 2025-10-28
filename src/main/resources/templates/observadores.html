@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Observadores</title>
+  <!-- Estilos generales -->
+  <link rel="stylesheet" href="/style/style-general.css">
+  <!-- Estilo personalizado para observadores -->
+  <link rel="stylesheet" href="style/style-observadores.css">
 </head>
 <body>
-    
+
+  <header>
+    <h1>Registro de Observadores</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/gestion">Gestión</a></li>
+        <li><a href="/especies">Especies</a></li>
+        <li><a href="/animales">Animales</a></li>
+        <li><a href="/avistamientos">Avistamientos</a></li>
+        <li><a href="/ubicaciones">Ubicaciones</a></li>
+        <li><a href="/observadores" class="activo">Observadores</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contenido">
+      <h2>Administrar Observadores</h2>
+
+      <!-- Submenú CRUD -->
+      <div class="submenu">
+        <button onclick="location.href='#'">Agregar</button>
+        <button onclick="location.href='#'">Consultar</button>
+        <button onclick="location.href='#'">Actualizar</button>
+        <button onclick="location.href='#'">Eliminar</button>
+      </div>
+
+      <!-- Contenido dinámico -->
+      <div class="contenido-dinamico">
+        <p>
+          Aquí puedes registrar y gestionar los observadores.
+          Usa los botones del submenú para realizar las acciones correspondientes.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Sistema de Avistamientos</p>
+  </footer>
+
 </body>
 </html>

@@ -35,8 +35,8 @@ public class PageController {
         return "ubicaciones";  // Carga templates/ubicaciones.html
     }
 
-    @GetMapping("/observador")
+    @GetMapping("/observadores")
     public String observadores() {
-        return "ubicaciones";  // Carga templates/ubicaciones.html
+        return "observadores";  // Carga templates/observadores.html
     }
 }
