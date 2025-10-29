@@ -1,4 +1,6 @@
 package com.avistamientos_animales.demo.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +24,10 @@ public class Observador {
 
     @Column(name = "pais")
     private String pais;
+
+    // @OneToMany(mappedBy = "observador", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JsonManagedReference
+    // private List<Avistamiento> avistamientos;
 
     // --- Getters y Setters ---
 
@@ -72,4 +78,12 @@ public class Observador {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    // public List<Avistamiento> getAvistamientos() {
+    //     return avistamientos;
+    // }
+
+    // public void setAvistamientos(List<Avistamiento> avistamientos) {
+    //     this.avistamientos = avistamientos;
+    // }
 }

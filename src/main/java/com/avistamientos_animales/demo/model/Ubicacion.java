@@ -1,4 +1,6 @@
 package com.avistamientos_animales.demo.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +21,10 @@ public class Ubicacion {
 
     @Column(name = "habitad", nullable = false)
     private String habitad;
+
+    // @OneToMany(mappedBy = "ubicacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JsonManagedReference
+    // private List<Avistamiento> avistamientos;
 
     // --- Getters y Setters ---
     public String getIdUbicacion() {
@@ -59,4 +65,12 @@ public class Ubicacion {
     public void setHabitad(String habitad) {
         this.habitad = habitad;
     }
+
+    // public List<Avistamiento> getAvistamientos() {
+    //     return avistamientos;
+    // }
+
+    // public void setAvistamientos(List<Avistamiento> avistamientos) {
+    //     this.avistamientos = avistamientos;
+    // }
 }

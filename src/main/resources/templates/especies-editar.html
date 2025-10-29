@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Especies</title>
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+</head>
+<body>
+
+<header>
+  <h1>Editar Especies</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/especies">Volver</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Actualizar Datos de la Especie</h2>
+
+    <form th:action="@{/especies/actualizar}" th:object="${especie}" method="post" class="formulario">
+      
+      <div class="campo">
+        <label>ID (no editable):</label>
+        <input type="text" th:field="*{idEspecie}" readonly />
+      </div>
+
+      <div class="campo">
+        <label>Nombre Científico:</label>
+        <input type="text" th:field="*{nombre}" required />
+      </div>
+
+      <div class="campo">
+        <label>Genero:</label>
+        <input type="text" th:field="*{genero}" required />
+      </div>
+
+      <div class="campo">
+        <label>Familia:</label>
+        <input type="text" th:field="*{familia}" required />
+      </div>
+
+      <div class="campo">
+        <label>Orden:</label>
+        <input type="text" th:field="*{orden}" required />
+      </div>
+
+        <div class="campo">
+            <label>Clase:</label>
+            <input type="text" th:field="*{clase}" required />
+        </div>
+
+        <div class="campo">
+            <label>Filo:</label>
+            <input type="text" th:field="*{filo}" required />
+        </div>
+        <div class="campo">
+            <label>Descripción:</label>
+            <input type="text" th:field="*{descripcion}" required />
+        </div>
+
+      <div class="botones-formulario">
+        <button type="submit" class="boton agregar">Guardar cambios</button>
+        <a href="/especies" class="boton cancelar">Cancelar</a>
+      </div>
+
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+</body>
+</html>

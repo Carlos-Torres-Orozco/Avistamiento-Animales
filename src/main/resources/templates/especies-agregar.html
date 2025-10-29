@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Especie</title>
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+</head>
+<body>
+
+<header>
+  <h1>Agregar Especie</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/especies" class="activo">Especies</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Formulario de Nuevo Observador</h2>
+    <form th:action="@{/especies/guardar}" th:object="${especie}" method="post" class="formulario">
+      
+      <div class="campo">
+        <label>Nombre Científico:</label>
+        <input type="text" th:field="*{nombre}" placeholder="Nombre Científico" required />
+      </div>
+      
+      <div class="campo">
+        <label>Genero:</label>
+        <input type="text" th:field="*{genero}" placeholder="Genero" required />
+      </div>
+
+      <div class="campo">
+        <label>Familia:</label>
+        <input type="text" th:field="*{familia}" placeholder="Familia" required />
+      </div>
+
+      <div class="campo">
+        <label>Orden:</label>
+        <input type="text" th:field="*{orden}" placeholder="Orden" required />
+      </div>
+
+      <div class="campo">
+        <label>Clase:</label>
+        <input type="text" th:field="*{clase}" placeholder="Clase" required />
+      </div>
+
+      <div class="campo">
+        <label>Filo:</label>
+        <input type="text" th:field="*{filo}" placeholder="Filo" required />
+      </div>
+
+      <div class="campo">
+        <label>Descripción:</label>
+        <input type="text" th:field="*{descripcion}" placeholder="Descripción" required />
+      </div>
+
+      <div class="botones-formulario">
+        <button type="submit" class="boton agregar">Guardar</button>
+        <a href="/especies" class="boton cancelar">Cancelar</a>
+      </div>
+      
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>

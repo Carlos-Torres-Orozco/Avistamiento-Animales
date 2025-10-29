@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Especies</title>
+  <link rel="stylesheet" href="/style/style-general.css">
+  <link rel="stylesheet" href="/style/style-tablas.css">
+</head>
+<body>
+
+<header>
+  <h1>Lista de Especies</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/especies" class="activo">Ubicaciones</a></li>
+      <li><a href="/especies/agregar">Agregar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Registros de Especies</h2>
+
+    <table class="tabla-datos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre Científico</th>
+          <th>Genero</th>
+          <th>Familia</th>
+          <th>Orden</th>
+          <th>Clase</th>
+          <th>Filo</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="esp : ${especies}">
+          <td th:text="${esp.idEspecie}"></td>
+          <td th:text="${esp.nombre}"></td>
+          <td th:text="${esp.genero}"></td>
+          <td th:text="${esp.familia}"></td>
+          <td th:text="${esp.orden}"></td>
+          <td th:text="${esp.clase}"></td>
+          <td th:text="${esp.filo}"></td>
+            <td th:text="${esp.descripcion}"></td>
+          <td>
+              <a th:href="@{'/especies/editar/' + ${esp.idEspecie}}" class="boton editar">Editar</a>
+              <a th:href="@{'/especies/eliminar/' + ${esp.idEspecie}}" class="boton eliminar"
+              onclick="return confirm('¿Seguro que deseas eliminar esta especie, se eliminaran los registros que dependen de ella?')">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>
