@@ -41,4 +41,23 @@ public class ObservadorController {
         observadorService.eliminar(id);
         return "redirect:/observadores/consultar";
     }
+
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEdicion(@PathVariable String id, Model model) {
+        Observador observador = observadorService.obtenerPorId(id);
+        if (observador != null) {
+            model.addAttribute("observador", observador);
+            return "observador-editar";
+        } else {
+            // Redirige si no encuentra el observador
+            return "redirect:/observadores";
+        }
+    }
+
+    // 🔹 Guardar cambios del observador
+    @PostMapping("/actualizar")
+    public String actualizar(@ModelAttribute("observador") Observador observador) {
+        observadorService.actualizar(observador);
+        return "redirect:/observadores";
+    }
 }

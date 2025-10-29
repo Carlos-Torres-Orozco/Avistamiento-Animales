@@ -28,3 +28,11 @@
   text-decoration: none;
   border-radius: 5px;
 }
+
+.boton.editar {
+  color: white;
+  background-color: #226eb4;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+}

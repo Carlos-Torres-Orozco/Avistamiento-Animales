@@ -42,4 +42,11 @@ public class ObservadorService {
         // Formatear con ceros a la izquierda
         return String.format("OBSER%05d", nuevoNumero);
     }
+    public Observador obtenerPorId(String id) {
+        return observadorRepository.findById(id).orElse(null);
+    }
+
+    public void actualizar(Observador observador) {
+        observadorRepository.save(observador); // JPA actualiza si el ID ya existe
+    }
 }

@@ -45,7 +45,9 @@
           <td th:text="${obs.pais}"></td>
           <td th:text="${obs.institucion}"></td>
           <td>
-            <a th:href="@{'/observadores/eliminar/' + ${obs.idObservador}}" class="boton eliminar">Eliminar</a>
+              <a th:href="@{'/observadores/editar/' + ${obs.idObservador}}" class="boton editar">Editar</a>
+              <a th:href="@{'/observadores/eliminar/' + ${obs.idObservador}}" class="boton eliminar"
+              onclick="return confirm('¿Seguro que deseas eliminar este observador?')">Eliminar</a>
           </td>
         </tr>
       </tbody>
