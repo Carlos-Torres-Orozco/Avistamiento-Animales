@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Ubicaciones</title>
+  <link rel="stylesheet" href="/style/style-general.css">
+  <link rel="stylesheet" href="/style/style-tablas.css">
+</head>
+<body>
+
+<header>
+  <h1>Lista de Ubicaciones</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/ubicaciones" class="activo">Ubicaciones</a></li>
+      <li><a href="/ubicaciones/agregar">Agregar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Registros de Ubicaciones</h2>
+
+    <table class="tabla-datos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Pais</th>
+          <th>Region</th>
+          <th>Habitad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="ubi : ${ubicaciones}">
+          <td th:text="${ubi.idUbicacion}"></td>
+          <td th:text="${ubi.nombre}"></td>
+          <td th:text="${ubi.pais}"></td>
+          <td th:text="${ubi.region}"></td>
+          <td th:text="${ubi.habitad}"></td>
+          <td>
+              <a th:href="@{'/ubicaciones/editar/' + ${ubi.idUbicacion}}" class="boton editar">Editar</a>
+              <a th:href="@{'/ubicaciones/eliminar/' + ${ubi.idUbicacion}}" class="boton eliminar"
+              onclick="return confirm('¿Seguro que deseas eliminar esta ubicacion?')">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>
