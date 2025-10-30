@@ -52,10 +52,16 @@ public class AnimalController {
         Animal animal = animalService.obtenerPorId(id);
         if (animal != null) {
             model.addAttribute("animal", animal);
+            model.addAttribute("especies", especieService.listar());
             return "animal-editar";
         } else {
-            // Redirige si no encuentra el animal
-            return "redirect:/animales";
+            return "redirect:/animales/consultar";
         }
+    }
+
+    @PostMapping("/actualizar")
+    public String actualizar(@ModelAttribute Animal animal) {
+        animalService.guardar(animal);
+        return "redirect:/animales/consultar";
     }
 }

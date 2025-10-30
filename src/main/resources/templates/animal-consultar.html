@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Animales</title>
+  <link rel="stylesheet" href="/style/style-general.css">
+  <link rel="stylesheet" href="/style/style-tablas.css">
+</head>
+<body>
+
+<header>
+  <h1>Lista de Animales</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/animales" class="activo">Animales</a></li>
+      <li><a href="/animales/agregar">Agregar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Registros de Animales</h2>
+
+    <table class="tabla-datos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre Comun</th>
+          <th>Especie</th>
+          <th>Estado de conservación</th>
+          <th>Protegido</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="ani : ${animales}">
+          <td th:text="${ani.idAnimal}"></td>
+          <td th:text="${ani.nombreComun}"></td>
+          <td th:text="${ani.especie.nombre}"></td>
+          <td th:text="${ani.estadoConservacion}"></td>
+          <td th:text="${ani.protegido}"></td>
+          <td>
+              <a th:href="@{'/animales/editar/' + ${ani.idAnimal}}" class="boton editar">Editar</a>
+              <a th:href="@{'/animales/eliminar/' + ${ani.idAnimal}}" class="boton eliminar"
+              onclick="return confirm('¿Seguro que deseas eliminar este animal, se eliminaran los registros que dependen de ella?')">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>

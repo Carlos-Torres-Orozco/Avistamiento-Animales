@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Animales</title>
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+</head>
+<body>
+
+<header>
+  <h1>Editar Animales</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/animales">Volver</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Actualizar Datos del Animal</h2>
+
+    <form th:action="@{/animales/actualizar}" th:object="${animal}" method="post" class="formulario">
+      
+      <div class="campo">
+        <label>ID (no editable):</label>
+        <input type="text" th:field="*{idAnimal}" readonly />
+      </div>
+
+      <div class="campo">
+        <label>Nombre Comun:</label>
+        <input type="text" th:field="*{nombreComun}" required />
+      </div>
+
+      <div class="campo">
+            <label>Especie:</label>
+            <select th:field="*{especie}" required>
+                <option value="" disabled>Seleccione una especie</option>
+                <option th:each="esp : ${especies}"
+                        th:value="${esp.idEspecie}"
+                        th:text="${esp.nombre}"
+                        th:selected="${animal.especie != null and animal.especie.idEspecie == esp.idEspecie}">
+                </option>
+            </select>
+        </div>
+
+      <div class="campo">
+        <label>Estado de conservación:</label>
+        <input type="text" th:field="*{estadoConservacion}" required />
+      </div>
+
+      <div class="campo">
+        <label>Protegido:</label>
+        <select th:field="*{protegido}" required>
+          <option value="N" th:selected="${animal.protegido == 'N'}">No</option>
+          <option value="S" th:selected="${animal.protegido == 'S'}">Sí</option>
+        </select>
+      </div>
+
+      <div class="botones-formulario">
+        <button type="submit" class="boton agregar">Guardar cambios</button>
+        <a href="/animales" class="boton cancelar">Cancelar</a>
+      </div>
+
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+</body>
+</html>
