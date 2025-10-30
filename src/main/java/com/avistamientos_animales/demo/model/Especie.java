@@ -2,7 +2,12 @@ package com.avistamientos_animales.demo.model;
 
 import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Especie")
@@ -83,5 +88,13 @@ public class Especie {
     }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public List<Animal> getAnimales() {
+        return animales;
+    }
+
+    public void setAnimales(List<Animal> animales) {
+        this.animales = animales;
     }
 }

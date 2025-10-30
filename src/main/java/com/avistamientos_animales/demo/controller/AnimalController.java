@@ -9,49 +9,53 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.avistamientos_animales.demo.model.Especie;
+import com.avistamientos_animales.demo.model.Animal;
+import com.avistamientos_animales.demo.service.AnimalService;
 import com.avistamientos_animales.demo.service.EspecieService;
 
+
 @Controller
-@RequestMapping("/especies")
-public class EspecieController {
-    
+@RequestMapping("/animales")
+public class AnimalController {
+    @Autowired
+    private AnimalService animalService;
     @Autowired
     private EspecieService especieService;
 
-    // Mostrar lista de especies
+    // Mostrar lista de animales
     @GetMapping("/consultar")
     public String listar(Model model) {
-        model.addAttribute("especies", especieService.listar());
-        return "especies-consultar";
+        model.addAttribute("animales", animalService.listar());
+        return "animal-consultar";
     }
     // Mostrar formulario de agregar
     @GetMapping("/agregar")
     public String mostrarFormulario(Model model) {
-        model.addAttribute("especie", new Especie());
-        return "especies-agregar";
+        model.addAttribute("animal", new Animal());
+        model.addAttribute("especies", especieService.listar());
+        return "animal-agregar";
     }
-    // Guardar especie
+    // Guardar animal
     @PostMapping("/guardar")
-    public String guardar(@ModelAttribute Especie especie) {
-        especieService.guardar(especie);
-        return "redirect:/especies";
+    public String guardar(@ModelAttribute Animal animal) {
+        animalService.guardar(animal);
+        return "redirect:/animales";
     }
     // Eliminar
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id) {
-        especieService.eliminar(id);
-        return "redirect:/especies/consultar";
+        animalService.eliminar(id);
+        return "redirect:/animales/consultar";
     }
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable String id, Model model) {
-        Especie especie = especieService.obtenerPorId(id);
-        if (especie != null) {
-            model.addAttribute("especie", especie);
-            return "especies-editar";
+        Animal animal = animalService.obtenerPorId(id);
+        if (animal != null) {
+            model.addAttribute("animal", animal);
+            return "animal-editar";
         } else {
-            // Redirige si no encuentra la especie
-            return "redirect:/especies";
+            // Redirige si no encuentra el animal
+            return "redirect:/animales";
         }
     }
 }
