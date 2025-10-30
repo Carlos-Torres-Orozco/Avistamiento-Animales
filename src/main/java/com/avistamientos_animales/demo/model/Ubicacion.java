@@ -1,7 +1,11 @@
 package com.avistamientos_animales.demo.model;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,9 +27,8 @@ public class Ubicacion {
     @Column(name = "habitad", nullable = false)
     private String habitad;
 
-    // @OneToMany(mappedBy = "ubicacion", cascade = CascadeType.ALL, orphanRemoval = true)
-    // @JsonManagedReference
-    // private List<Avistamiento> avistamientos;
+    @OneToMany(mappedBy = "ubicacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Avistamiento> avistamientos;
 
     // --- Getters y Setters ---
     public String getIdUbicacion() {
@@ -67,11 +70,11 @@ public class Ubicacion {
         this.habitad = habitad;
     }
 
-    // public List<Avistamiento> getAvistamientos() {
-    //     return avistamientos;
-    // }
+    public List<Avistamiento> getAvistamientos() {
+        return avistamientos;
+    }
 
-    // public void setAvistamientos(List<Avistamiento> avistamientos) {
-    //     this.avistamientos = avistamientos;
-    // }
+    public void setAvistamientos(List<Avistamiento> avistamientos) {
+        this.avistamientos = avistamientos;
+    }
 }
