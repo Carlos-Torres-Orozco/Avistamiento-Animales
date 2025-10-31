@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avistamientos_animales.demo.model.Avistamiento;
+import com.avistamientos_animales.demo.model.Multimedia;
 import com.avistamientos_animales.demo.repository.AvistamientoRepository;
 
 @Service
 public class AvistamientoService {
      @Autowired
     private AvistamientoRepository avistamientoRepository;
+
+    @Autowired
+    private MultimediaService multimediaService;
 
     public List<Avistamiento> listar(){
         return avistamientoRepository.findAll();
@@ -22,9 +26,25 @@ public class AvistamientoService {
         return avistamientoRepository.findById(id);
     }
     public Avistamiento guardar(Avistamiento a){
-        if(a.getIdAvistamiento()==null || a.getIdAvistamiento().isEmpty()){
-            a.setIdAvistamiento(generarNuevoId());
+        // Generar ID del avistamiento si no existe
+    if (a.getIdAvistamiento() == null || a.getIdAvistamiento().isEmpty()) {
+        a.setIdAvistamiento(generarNuevoId());
+    }
+
+    // Configurar multimedia antes de guardar el avistamiento
+    if (a.getMultimedias() != null) {
+            for (Multimedia m : a.getMultimedias()) {
+                m.setAvistamiento(a); // primero establece la relación
+
+                // genera ID si falta, pero sin guardar aún
+                if (m.getIdImagen() == null || m.getIdImagen().isEmpty()) {
+                    String nuevoId = multimediaService.generarNuevoId(); // usa método público
+                    m.setIdImagen(nuevoId);
+                }
+            }
         }
+
+        // guardar todo con cascade
         return avistamientoRepository.save(a);
     }
     public void eliminar(String id) {

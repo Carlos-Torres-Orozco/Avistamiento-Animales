@@ -47,40 +47,31 @@
       </div>
 
       <!-- Animal -->
-      <div class="campo">
-        <label>Animal:</label>
-        <select th:field="*{animal}" required>
-          <option value="" disabled selected>Seleccione un animal</option>
-          <option th:each="animal : ${animales}" 
-                  th:value="${animal.idAnimal}"
-                  th:text="${animal.nombreComun}">
-          </option>
-        </select>
-      </div>
+      <select name="idAnimal" required>
+        <option value="" disabled selected>Seleccione un animal</option>
+        <option th:each="animal : ${animales}" 
+                th:value="${animal.idAnimal}"
+                th:text="${animal.nombreComun}">
+        </option>
+      </select>
 
       <!-- Observador -->
-      <div class="campo">
-        <label>Observador:</label>
-        <select th:field="*{observador}" required>
-          <option value="" disabled selected>Seleccione un observador</option>
-          <option th:each="obs : ${observadores}" 
-                  th:value="${obs.idObservador}" 
-                  th:text="${obs.nombre}">
-          </option>
-        </select>
-      </div>
+      <select name="idObservador" required>
+        <option value="" disabled selected>Seleccione un observador</option>
+        <option th:each="obs : ${observadores}" 
+                th:value="${obs.idObservador}" 
+                th:text="${obs.nombre}">
+        </option>
+      </select>
 
       <!-- Ubicación -->
-      <div class="campo">
-        <label>Ubicación:</label>
-        <select th:field="*{ubicacion}" required>
-          <option value="" disabled selected>Seleccione una ubicación</option>
-          <option th:each="ubi : ${ubicaciones}" 
-                  th:value="${ubi.idUbicacion}" 
-                  th:text="${ubi.nombre}">
-          </option>
-        </select>
-      </div>
+      <select name="idUbicacion" required>
+        <option value="" disabled selected>Seleccione una ubicación</option>
+        <option th:each="ubi : ${ubicaciones}" 
+                th:value="${ubi.idUbicacion}" 
+                th:text="${ubi.nombre}">
+        </option>
+      </select>
 
       <!-- Multimedia -->
       <div class="campo">

@@ -107,7 +107,7 @@ public class Avistamiento {
         return ubicacion;
     }
 
-    public void setOUbicacion(Ubicacion ubicacion) {
+    public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     } 
 
