@@ -1,6 +1,8 @@
 package com.avistamientos_animales.demo.service;
+
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +11,9 @@ import com.avistamientos_animales.demo.repository.MultimediaRepository;
 
 @Service
 public class MultimediaService {
-     @Autowired
+    @Autowired
     private MultimediaRepository multimediaRepository;
-
+    
     public List<Multimedia> listar(){
         return multimediaRepository.findAll();
     }
@@ -19,11 +21,12 @@ public class MultimediaService {
     public Optional<Multimedia> buscarPorId(String id) {
         return multimediaRepository.findById(id);
     }
+
     public Multimedia guardar(Multimedia m){
         if(m.getIdImagen()==null || m.getIdImagen().isEmpty()){
-            a.setIdImagen(generarNuevoId());
+            m.setIdImagen(generarNuevoId());
         }
-        return multimediaRepository.save(a);
+        return multimediaRepository.save(m);
     }
     public void eliminar(String id) {
         multimediaRepository.deleteById(id);
