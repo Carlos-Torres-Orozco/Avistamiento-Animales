@@ -44,8 +44,13 @@ public class AvistamientoController {
     // Guardar avistamiento
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Avistamiento avistamiento) {
+        // Asegura la relación bidireccional
+        if (avistamiento.getMultimedias() != null) {
+            avistamiento.getMultimedias().forEach(m -> m.setAvistamiento(avistamiento));
+        }
+
         avistamientoService.guardar(avistamiento);
-        return "redirect:/avistamientos";
+        return "redirect:/avistamientos/consultar";
     }
     // Eliminar
     @GetMapping("/eliminar/{id}")
@@ -68,6 +73,10 @@ public class AvistamientoController {
     }
     @PostMapping("/actualizar")
     public String actualizar(@ModelAttribute Avistamiento avistamiento) {
+       if (avistamiento.getMultimedias() != null) {
+        avistamiento.getMultimedias().forEach(m -> m.setAvistamiento(avistamiento));
+        }
+
         avistamientoService.guardar(avistamiento);
         return "redirect:/avistamientos/consultar";
     }

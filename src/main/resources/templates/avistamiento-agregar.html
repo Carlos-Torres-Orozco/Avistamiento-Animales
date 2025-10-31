@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Avistamiento</title>
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+</head>
+<body>
+
+<header>
+  <h1>Registrar Avistamiento</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/avistamientos" class="activo">Avistamientos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <form th:action="@{/avistamientos/guardar}" th:object="${avistamiento}" method="post" enctype="multipart/form-data" class="formulario">
+
+      <!-- Tipo -->
+      <div class="campo">
+        <label>Tipo:</label>
+        <input type="text" th:field="*{tipo}" required>
+      </div>
+
+      <!-- Clima -->
+      <div class="campo">
+        <label>Clima:</label>
+        <input type="text" th:field="*{clima}" required>
+      </div>
+
+      <!-- Descripción -->
+      <div class="campo">
+        <label>Descripción:</label>
+        <textarea th:field="*{descripcion}" required></textarea>
+      </div>
+
+      <!-- Cantidad -->
+      <div class="campo">
+        <label>Cantidad observada:</label>
+        <input type="number" th:field="*{cantidad}" required>
+      </div>
+
+      <!-- Animal -->
+      <div class="campo">
+        <label>Animal:</label>
+        <select th:field="*{animal}" required>
+          <option value="" disabled selected>Seleccione un animal</option>
+          <option th:each="animal : ${animales}" 
+                  th:value="${animal.idAnimal}"
+                  th:text="${animal.nombreComun}">
+          </option>
+        </select>
+      </div>
+
+      <!-- Observador -->
+      <div class="campo">
+        <label>Observador:</label>
+        <select th:field="*{observador}" required>
+          <option value="" disabled selected>Seleccione un observador</option>
+          <option th:each="obs : ${observadores}" 
+                  th:value="${obs.idObservador}" 
+                  th:text="${obs.nombre}">
+          </option>
+        </select>
+      </div>
+
+      <!-- Ubicación -->
+      <div class="campo">
+        <label>Ubicación:</label>
+        <select th:field="*{ubicacion}" required>
+          <option value="" disabled selected>Seleccione una ubicación</option>
+          <option th:each="ubi : ${ubicaciones}" 
+                  th:value="${ubi.idUbicacion}" 
+                  th:text="${ubi.nombre}">
+          </option>
+        </select>
+      </div>
+
+      <!-- Multimedia -->
+      <div class="campo">
+        <label>Archivos Multimedia:</label>
+        <div id="multimedia-container">
+          <div class="multimedia-item">
+            <label>Tipo:</label>
+            <input type="text" name="multimedias[0].tipo" placeholder="Ej. Imagen, Video" required>
+            <label>Archivo (URL o nombre):</label>
+            <input type="text" name="multimedias[0].archivo" placeholder="archivo.jpg" required>
+            <label>Fecha:</label>
+            <input type="date" name="multimedias[0].fecha" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="botones-formulario">
+        <button type="submit" class="boton agregar">Guardar</button>
+        <a href="/avistamientos" class="boton cancelar">Cancelar</a>
+      </div>
+
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>

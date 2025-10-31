@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Avistamiento</title>
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+</head>
+<body>
+
+<header>
+  <h1>Editar Avistamiento</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/avistamientos">Volver</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Actualizar Datos del Avistamiento</h2>
+
+    <form th:action="@{/avistamientos/actualizar}" th:object="${avistamiento}" method="post" class="formulario">
+      
+      <!-- ID no editable -->
+      <div class="campo">
+        <label>ID (no editable):</label>
+        <input type="text" th:field="*{idAvistamiento}" readonly />
+      </div>
+
+      <!-- Tipo -->
+      <div class="campo">
+        <label>Tipo:</label>
+        <input type="text" th:field="*{tipo}" required />
+      </div>
+
+      <!-- Clima -->
+      <div class="campo">
+        <label>Clima:</label>
+        <input type="text" th:field="*{clima}" required />
+      </div>
+
+      <!-- Descripción -->
+      <div class="campo">
+        <label>Descripción:</label>
+        <textarea th:field="*{descripcion}" rows="3" required></textarea>
+      </div>
+
+      <!-- Cantidad -->
+      <div class="campo">
+        <label>Cantidad:</label>
+        <input type="number" th:field="*{cantidad}" min="1" required />
+      </div>
+
+      <!-- Animal -->
+      <div class="campo">
+        <label>Animal:</label>
+        <select th:field="*{animal}" required>
+          <option value="" disabled>Seleccione un animal</option>
+          <option th:each="ani : ${animales}"
+                  th:value="${ani.idAnimal}"
+                  th:text="${ani.nombreComun}"
+                  th:selected="${avistamiento.animal != null and avistamiento.animal.idAnimal == ani.idAnimal}">
+          </option>
+        </select>
+      </div>
+
+      <!-- Observador -->
+      <div class="campo">
+        <label>Observador:</label>
+        <select th:field="*{observador}" required>
+          <option value="" disabled>Seleccione un observador</option>
+          <option th:each="obs : ${observadores}"
+                  th:value="${obs.idObservador}"
+                  th:text="${obs.nombre}"
+                  th:selected="${avistamiento.observador != null and avistamiento.observador.idObservador == obs.idObservador}">
+          </option>
+        </select>
+      </div>
+
+      <!-- Ubicación -->
+      <div class="campo">
+        <label>Ubicación:</label>
+        <select th:field="*{ubicacion}" required>
+          <option value="" disabled>Seleccione una ubicación</option>
+          <option th:each="ubi : ${ubicaciones}"
+                  th:value="${ubi.idUbicacion}"
+                  th:text="${ubi.nombre}"
+                  th:selected="${avistamiento.ubicacion != null and avistamiento.ubicacion.idUbicacion == ubi.idUbicacion}">
+          </option>
+        </select>
+      </div>
+
+      <!-- Botones -->
+      <div class="botones-formulario">
+        <button type="submit" class="boton agregar">Guardar cambios</button>
+        <a href="/avistamientos" class="boton cancelar">Cancelar</a>
+      </div>
+
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+</body>
+</html>

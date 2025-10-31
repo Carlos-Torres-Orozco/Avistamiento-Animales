@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Avistamientos</title>
+  <link rel="stylesheet" href="/style/style-general.css">
+  <link rel="stylesheet" href="/style/style-tablas.css">
+</head>
+<body>
+
+<header>
+  <h1>Lista de Avistamientos</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/avistamientos" class="activo">Avistamientos</a></li>
+      <li><a href="/avistamientos/agregar">Agregar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2>Registros de Avistamientos</h2>
+
+    <table class="tabla-datos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>Clima</th>
+          <th>Descripción</th>
+          <th>Cantidad</th>
+          <th>Animal</th>
+          <th>Observador</th>
+          <th>Ubicación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="av : ${avistamientos}">
+          <td th:text="${av.idAvistamiento}"></td>
+          <td th:text="${av.tipo}"></td>
+          <td th:text="${av.clima}"></td>
+          <td th:text="${av.descripcion}"></td>
+          <td th:text="${av.cantidad}"></td>
+          <td th:text="${av.animal != null ? av.animal.nombreComun : '—'}"></td>
+          <td th:text="${av.observador != null ? av.observador.nombre : '—'}"></td>
+          <td th:text="${av.ubicacion != null ? av.ubicacion.nombre : '—'}"></td>
+          <td>
+              <a th:href="@{'/avistamientos/editar/' + ${av.idAvistamiento}}" class="boton editar">Editar</a>
+              <a th:href="@{'/avistamientos/eliminar/' + ${av.idAvistamiento}}" class="boton eliminar"
+              onclick="return confirm('¿Seguro que deseas eliminar este avistamiento y sus registros asociados (multimedia, etc.)?')">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>
