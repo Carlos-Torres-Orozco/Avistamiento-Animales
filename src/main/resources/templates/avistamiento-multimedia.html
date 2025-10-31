@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Multimedia del Avistamiento</title>
+  <link rel="stylesheet" href="/style/style-general.css">
+  <link rel="stylesheet" href="/style/style-tablas.css">
+</head>
+<body>
+
+<header>
+  <h1>Archivos Multimedia</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/avistamientos">Volver a Avistamientos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contenido">
+    <h2 th:text="'Multimedia del Avistamiento: ' + ${avistamiento.idAvistamiento}"></h2>
+
+    <table class="tabla-datos">
+        <thead>
+            <tr>
+            <th>ID Imagen</th>
+            <th>Tipo</th>
+            <th>Archivo</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="m : ${multimedias}">
+            <td th:text="${m.idImagen}"></td>
+            <td th:text="${m.tipo}"></td>
+            <td>
+                <a th:href="${m.archivo}" target="_blank" th:text="${m.archivo}"></a>
+            </td>
+            <td th:text="${m.fecha}"></td>
+            <td>
+                <a th:href="@{'/multimedia/eliminar/' + ${m.idImagen}}" 
+                class="boton eliminar"
+                th:onclick="'return confirm(\'¿Eliminar este archivo multimedia? Si es el último, también se eliminará el avistamiento.\')'">
+                Eliminar
+                </a>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="botones-formulario">
+      <a href="/avistamientos" class="boton cancelar">Regresar</a>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>

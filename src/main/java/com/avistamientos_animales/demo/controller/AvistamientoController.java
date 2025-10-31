@@ -80,4 +80,17 @@ public class AvistamientoController {
         avistamientoService.guardar(avistamiento);
         return "redirect:/avistamientos/consultar";
     }
+
+    @GetMapping("/multimedia/{idAvistamiento}")
+    public String verMultimedia(@PathVariable String idAvistamiento, Model model) {
+        Avistamiento avistamiento = avistamientoService.obtenerPorId(idAvistamiento);
+        
+        if (avistamiento != null) {
+            model.addAttribute("avistamiento", avistamiento);
+            model.addAttribute("multimedias", avistamiento.getMultimedias());
+            return "avistamiento-multimedia";
+        } else {
+            return "redirect:/avistamientos/consultar";
+        }
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.avistamientos_animales.demo.model.Avistamiento;
 import com.avistamientos_animales.demo.model.Multimedia;
 import com.avistamientos_animales.demo.service.MultimediaService;
 import com.avistamientos_animales.demo.service.AvistamientoService;
@@ -42,8 +43,27 @@ public class MultimediaController {
     // Eliminar
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id) {
-        multimediaService.eliminar(id);
-        return "redirect:/multimedia/consultar";
+        Multimedia multimedia = multimediaService.obtenerPorId(id);
+        
+        if (multimedia != null) {
+            String idAvistamiento = multimedia.getAvistamiento().getIdAvistamiento();
+            
+            // Eliminar la multimedia
+            multimediaService.eliminar(id);
+
+            // Verificar si el avistamiento quedó sin multimedia
+            Avistamiento avistamiento = multimedia.getAvistamiento();
+            if (avistamiento.getMultimedias() == null || avistamiento.getMultimedias().isEmpty()) {
+                avistamientoService.eliminar(idAvistamiento);
+                System.out.println("El avistamiento " + idAvistamiento + " fue eliminado porque ya no tiene multimedia asociada.");
+                return "redirect:/avistamientos/consultar";
+            }
+
+            // Si aún tiene multimedia, volver a su lista
+            return "redirect:/avistamientos/multimedia/" + idAvistamiento;
+        }
+
+        return "redirect:/avistamientos/consultar";
     }
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable String id, Model model) {

@@ -49,9 +49,10 @@
           <td th:text="${av.observador != null ? av.observador.nombre : '—'}"></td>
           <td th:text="${av.ubicacion != null ? av.ubicacion.nombre : '—'}"></td>
           <td>
-              <a th:href="@{'/avistamientos/editar/' + ${av.idAvistamiento}}" class="boton editar">Editar</a>
-              <a th:href="@{'/avistamientos/eliminar/' + ${av.idAvistamiento}}" class="boton eliminar"
-              onclick="return confirm('¿Seguro que deseas eliminar este avistamiento y sus registros asociados (multimedia, etc.)?')">Eliminar</a>
+            <a th:href="@{'/avistamientos/editar/' + ${av.idAvistamiento}}" class="boton editar">Editar</a>
+            <a th:href="@{'/avistamientos/eliminar/' + ${av.idAvistamiento}}" class="boton eliminar"
+            onclick="return confirm('¿Seguro que deseas eliminar este avistamiento y sus registros asociados (multimedia, etc.)?')">Eliminar</a>
+            <a th:href="@{'/avistamientos/multimedia/' + ${av.idAvistamiento}}" class="boton ver">Ver Multimedia</a>
           </td>
         </tr>
       </tbody>
