@@ -7,4 +7,5 @@ import com.avistamientos_animales.demo.model.Observador;
 public interface ObservadorRepository extends JpaRepository<Observador, String> {
     @Query(value = "SELECT TOP 1 id_observador FROM Observador ORDER BY id_observador DESC", nativeQuery = true)
     String findLastId();
+    Observador findByCorreoAndContrasena(String correo, String contrasena);
 }

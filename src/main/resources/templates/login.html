@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+</head>
+<body>
+
+<header>
+  <h1>Inicio de Sesión</h1>
+</header>
+
+<main>
+  <section class="contenido">
+    <form th:action="@{/login}" method="post" class="formulario">
+      <div class="campo">
+        <label>Correo electrónico:</label>
+        <input type="email" name="correo" required />
+      </div>
+
+      <div class="campo">
+        <label>Contraseña:</label>
+        <input type="password" name="contrasena" required />
+      </div>
+
+      <div class="botones-formulario">
+        <button type="submit" class="boton agregar">Ingresar</button>
+      </div>
+
+      <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+</body>
+</html>
