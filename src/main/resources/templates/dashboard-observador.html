@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel del Observador</title>
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-dashboard.css}">
+</head>
+<body>
+
+<header>
+  <h1>Panel del Observador</h1>
+  <p th:text="'Bienvenido, ' + ${usuario.nombre} + ' (' + ${usuario.rol} + ')'"></p>
+  <a th:href="@{/logout}" class="logout-btn">Cerrar sesión</a>
+</header>
+
+<main>
+  <section class="menu-dashboard">
+    <h2>Opciones disponibles</h2>
+    <ul>
+      <li><a th:href="@{/animales/lista}">🐾 Animales</a></li>
+      <li><a th:href="@{/avistamientos/lista}">📷 Avistamientos</a></li>
+      <li><a th:href="@{/ubicaciones/lista}">📍 Ubicaciones</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos | Observador</p>
+</footer>
+
+</body>
+</html>

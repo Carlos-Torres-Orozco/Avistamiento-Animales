@@ -13,11 +13,11 @@ import com.avistamientos_animales.demo.repository.MultimediaRepository;
 public class MultimediaService {
     @Autowired
     private MultimediaRepository multimediaRepository;
-    
+
     public List<Multimedia> listar(){
         return multimediaRepository.findAll();
     }
-
+    
     public Optional<Multimedia> buscarPorId(String id) {
         return multimediaRepository.findById(id);
     }
@@ -31,16 +31,15 @@ public class MultimediaService {
     public void eliminar(String id) {
         multimediaRepository.deleteById(id);
     }
-    private String generarNuevoId() {
+    public String generarNuevoId() {
         String ultimoId = multimediaRepository.findLastId();
         int nuevoNumero = 1;
 
         if (ultimoId != null && ultimoId.length() == 10) {
-            String numeroStr = ultimoId.substring(5); // obtiene los últimos 5 dígitos
+            String numeroStr = ultimoId.substring(5);
             nuevoNumero = Integer.parseInt(numeroStr) + 1;
         }
 
-        // Formatear con ceros a la izquierda
         return String.format("MULTI%05d", nuevoNumero);
     }
     public Multimedia obtenerPorId(String id) {

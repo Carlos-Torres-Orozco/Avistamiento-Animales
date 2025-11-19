@@ -12,19 +12,29 @@
 <body>
 
   <header>
-    <h1>Gestión de Avistamientos</h1>
-    <nav>
-      <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/gestion">Gestión</a></li>
-        <li><a href="/especies">Especies</a></li>
-        <li><a href="/animales">Animales</a></li>
-        <li><a href="/avistamientos" class="activo">Avistamientos</a></li>
-        <li><a href="/ubicaciones">Ubicaciones</a></li>
-        <li><a href="/observadores">Observadores</a></li>
-      </ul>
-    </nav>
-  </header>
+  <h1>Gestión de Avistamientos</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/dashboard-admin">Gestión</a></li>
+
+      <!-- Visible solo para admin -->
+      <li th:if="${usuario.rol == 'admin'}"><a href="/especies">Especies</a></li>
+      <li><a href="/animales">Animales</a></li>
+      <li><a href="/avistamientos" class="activo">Avistamientos</a></li>
+      <li><a href="/ubicaciones">Ubicaciones</a></li>
+
+      <!-- Visible solo para admin -->
+      <li th:if="${usuario.rol == 'admin'}"><a href="/observadores">Observadores</a></li>
+
+      <!-- Logout -->
+      <li style="float:right">
+        <a th:href="@{/logout}" class="logout-btn">Cerrar sesión</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
 
   <main>
     <section class="contenido">

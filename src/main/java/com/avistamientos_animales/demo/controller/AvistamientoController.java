@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.avistamientos_animales.demo.model.Avistamiento;
-import com.avistamientos_animales.demo.service.AvistamientoService;
 import com.avistamientos_animales.demo.service.AnimalService;
-import com.avistamientos_animales.demo.service.UbicacionService;
+import com.avistamientos_animales.demo.service.AvistamientoService;
 import com.avistamientos_animales.demo.service.ObservadorService;
+import com.avistamientos_animales.demo.service.UbicacionService;
 
 @Controller
 @RequestMapping("/avistamientos")
@@ -43,7 +44,13 @@ public class AvistamientoController {
     }
     // Guardar avistamiento
     @PostMapping("/guardar")
-    public String guardar(@ModelAttribute Avistamiento avistamiento) {
+    public String guardar(@ModelAttribute Avistamiento avistamiento,
+                      @RequestParam("idAnimal") String idAnimal,
+                      @RequestParam("idObservador") String idObservador,
+                      @RequestParam("idUbicacion") String idUbicacion) {
+        avistamiento.setAnimal(animalService.obtenerPorId(idAnimal));
+        avistamiento.setObservador(observadorService.obtenerPorId(idObservador));
+        avistamiento.setUbicacion(ubicacionService.obtenerPorId(idUbicacion));
         // Asegura la relación bidireccional
         if (avistamiento.getMultimedias() != null) {
             avistamiento.getMultimedias().forEach(m -> m.setAvistamiento(avistamiento));
