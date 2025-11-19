@@ -32,7 +32,7 @@ public class ObservadorController {
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Observador observador) {
         observadorService.guardar(observador);
-        return "redirect:/observadores";
+        return "redirect:/";
     }
 
     // Eliminar
@@ -54,10 +54,15 @@ public class ObservadorController {
         }
     }
 
-    // 🔹 Guardar cambios del observador
     @PostMapping("/actualizar")
     public String actualizar(@ModelAttribute("observador") Observador observador) {
         observadorService.actualizar(observador);
         return "redirect:/observadores";
+    }
+
+    @GetMapping("/crear-cuenta")
+    public String mostrarFormularioLogIn(Model model) {
+        model.addAttribute("observador", new Observador());
+        return "observadores-creacion";
     }
 }

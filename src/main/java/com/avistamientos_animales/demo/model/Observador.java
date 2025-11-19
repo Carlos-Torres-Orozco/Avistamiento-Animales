@@ -30,6 +30,12 @@ public class Observador {
     @Column(name = "pais")
     private String pais;
 
+    @Column(name = "contrasena")
+    private String contrasena;
+
+    @Column(name = "rol")
+    private String rol;
+
     @OneToMany(mappedBy = "observador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Avistamiento> avistamientos;
 
@@ -90,4 +96,18 @@ public class Observador {
     public void setAvistamientos(List<Avistamiento> avistamientos) {
         this.avistamientos = avistamientos;
     }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+    public void setRol(String rol) {
+        this.rol = rol;
+    }   
 }

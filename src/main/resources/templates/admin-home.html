@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración</title>
+  <link rel="stylesheet" th:href="@{/style/style.css}">
+</head>
+<body>
+
+<header>
+  <h1>Panel de Administración</h1>
+  <nav>
+    <ul>
+      <li><a href="/" class="activo">Inicio</a></li>
+      <li><a href="/admin/home">Administrador</a></li>
+      <li><a href="/logout">Cerrar Sesión</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="menu-principal">
+    <h2>Gestión del Sistema</h2>
+
+    <p>Selecciona un módulo para administrar los datos del sistema.</p>
+
+    <div class="botones-modulos">
+
+      <!-- Módulos iguales que tu vista de gestión -->
+      <button onclick="location.href='/especies'">Especies</button>
+      <button onclick="location.href='/animales'">Animales</button>
+      <button onclick="location.href='/avistamientos'">Avistamientos</button>
+      <button onclick="location.href='/ubicaciones'">Ubicaciones</button>
+      <button onclick="location.href='/observadores'">Observadores</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
+
+</body>
+</html>

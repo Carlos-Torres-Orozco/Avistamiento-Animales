@@ -49,4 +49,8 @@ public class ObservadorService {
     public void actualizar(Observador observador) {
         observadorRepository.save(observador); // JPA actualiza si el ID ya existe
     }
+
+    public Observador buscarPorCorreo(String correo) {
+        return observadorRepository.findByCorreo(correo);
+    }
 }

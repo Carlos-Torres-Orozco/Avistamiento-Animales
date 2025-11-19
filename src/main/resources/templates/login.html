@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" th:href="@{/style/style-general.css}">
+</head>
+<body>
+
+<header>
+    <h1>Iniciar Sesión</h1>
+</header>
+
+<main>
+    <section class="contenido">
+        <form th:action="@{/login}" th:object="${loginData}" method="post">
+
+            <div class="campo">
+                <label>Correo:</label>
+                <input type="email" th:field="*{correo}" required/>
+            </div>
+
+            <div class="campo">
+                <label>Contraseña:</label>
+                <input type="password" th:field="*{contrasena}" required/>
+            </div>
+
+            <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </section>
+</main>
+
+</body>
+</html>
