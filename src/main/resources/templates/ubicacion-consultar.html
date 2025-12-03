@@ -4,58 +4,264 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consultar Ubicaciones</title>
-  <link rel="stylesheet" href="/style/style-general.css">
-  <link rel="stylesheet" href="/style/style-tablas.css">
+  <link rel="stylesheet" th:href="@{/style/style-animales-cards.css}">
 </head>
-<body>
+<body class="modern-page">
 
-<header>
+<header class="header">
   <h1>Lista de Ubicaciones</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/ubicaciones" class="activo">Ubicaciones</a></li>
-      <li><a href="/ubicaciones/agregar">Agregar</a></li>
+      <li><a href="/ubicaciones" class="btn-regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
-    <h2>Registros de Ubicaciones</h2>
+<main class="contenido">
+  <section class="grid-cards">
 
-    <table class="tabla-datos">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Pais</th>
-          <th>Region</th>
-          <th>Habitad</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="ubi : ${ubicaciones}">
-          <td th:text="${ubi.idUbicacion}"></td>
-          <td th:text="${ubi.nombre}"></td>
-          <td th:text="${ubi.pais}"></td>
-          <td th:text="${ubi.region}"></td>
-          <td th:text="${ubi.habitad}"></td>
-          <td>
-              <a th:href="@{'/ubicaciones/editar/' + ${ubi.idUbicacion}}" class="boton editar">Editar</a>
-              <a th:href="@{'/ubicaciones/eliminar/' + ${ubi.idUbicacion}}" class="boton eliminar"
-              onclick="return confirm('¿Seguro que deseas eliminar esta ubicacion?')">Eliminar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div th:each="ubi : ${ubicaciones}" class="card-animal">
+      
+      <h3 th:text="${ubi.nombre}">Nombre Ubicación</h3>
+
+      <!-- País con bandera -->
+      <p>
+        <strong>País:</strong>
+        <img th:id="'flag-' + ${ubi.idUbicacion}" 
+             alt="Bandera" 
+             style="vertical-align:middle; margin-right:5px; width:24px; height:18px;">
+        <span th:text="${ubi.pais}"></span>
+      </p>
+
+      <p><strong>Región:</strong> <span th:text="${ubi.region}"></span></p>
+      <p><strong>Habitat:</strong> <span th:text="${ubi.habitad}"></span></p>
+
+      <div class="botones-card">
+        <a th:href="@{'/ubicaciones/editar/' + ${ubi.idUbicacion}}" class="btn editar">Editar</a>
+        <a th:href="@{'/ubicaciones/eliminar/' + ${ubi.idUbicacion}}" 
+           class="btn eliminar" 
+           onclick="return confirm('¿Seguro que deseas eliminar esta ubicación?')">Eliminar</a>
+      </div>
+
+    </div>
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
+
+<script>
+  // Mapa de nombres de país a código ISO (puedes expandirlo según tus países)
+  const countryCodes = {
+  "Afganistán": "af",
+  "Albania": "al",
+  "Argelia": "dz",
+  "Andorra": "ad",
+  "Angola": "ao",
+  "Antigua y Barbuda": "ag",
+  "Argentina": "ar",
+  "Armenia": "am",
+  "Australia": "au",
+  "Austria": "at",
+  "Azerbaiyán": "az",
+  "Bahamas": "bs",
+  "Baréin": "bh",
+  "Bangladés": "bd",
+  "Barbados": "bb",
+  "Bielorrusia": "by",
+  "Bélgica": "be",
+  "Belice": "bz",
+  "Benín": "bj",
+  "Bután": "bt",
+  "Bolivia": "bo",
+  "Bosnia y Herzegovina": "ba",
+  "Botsuana": "bw",
+  "Brasil": "br",
+  "Brunéi": "bn",
+  "Bulgaria": "bg",
+  "Burkina Faso": "bf",
+  "Burundi": "bi",
+  "Cabo Verde": "cv",
+  "Camboya": "kh",
+  "Camerún": "cm",
+  "Canadá": "ca",
+  "República Centroafricana": "cf",
+  "Chad": "td",
+  "Chile": "cl",
+  "China": "cn",
+  "Colombia": "co",
+  "Comoras": "km",
+  "Congo": "cg",
+  "República Democrática del Congo": "cd",
+  "Costa Rica": "cr",
+  "Croacia": "hr",
+  "Cuba": "cu",
+  "Chipre": "cy",
+  "República Checa": "cz",
+  "Dinamarca": "dk",
+  "Yibuti": "dj",
+  "Dominica": "dm",
+  "República Dominicana": "do",
+  "Ecuador": "ec",
+  "Egipto": "eg",
+  "El Salvador": "sv",
+  "Guinea Ecuatorial": "gq",
+  "Eritrea": "er",
+  "Estonia": "ee",
+  "Esuatini": "sz",
+  "Etiopía": "et",
+  "Fiyi": "fj",
+  "Finlandia": "fi",
+  "Francia": "fr",
+  "Gabón": "ga",
+  "Gambia": "gm",
+  "Georgia": "ge",
+  "Alemania": "de",
+  "Ghana": "gh",
+  "Grecia": "gr",
+  "Granada": "gd",
+  "Guatemala": "gt",
+  "Guinea": "gn",
+  "Guinea-Bisáu": "gw",
+  "Guyana": "gy",
+  "Haití": "ht",
+  "Honduras": "hn",
+  "Hungría": "hu",
+  "Islandia": "is",
+  "India": "in",
+  "Indonesia": "id",
+  "Irán": "ir",
+  "Iraq": "iq",
+  "Irlanda": "ie",
+  "Israel": "il",
+  "Italia": "it",
+  "Jamaica": "jm",
+  "Japón": "jp",
+  "Jordania": "jo",
+  "Kazajistán": "kz",
+  "Kenia": "ke",
+  "Kiribati": "ki",
+  "Corea del Norte": "kp",
+  "Corea del Sur": "kr",
+  "Kuwait": "kw",
+  "Kirguistán": "kg",
+  "Laos": "la",
+  "Letonia": "lv",
+  "Líbano": "lb",
+  "Lesoto": "ls",
+  "Liberia": "lr",
+  "Libia": "ly",
+  "Liechtenstein": "li",
+  "Lituania": "lt",
+  "Luxemburgo": "lu",
+  "Madagascar": "mg",
+  "Malawi": "mw",
+  "Malasia": "my",
+  "Maldivas": "mv",
+  "Malí": "ml",
+  "Malta": "mt",
+  "Islas Marshall": "mh",
+  "Mauritania": "mr",
+  "Mauricio": "mu",
+  "México": "mx",
+  "Micronesia": "fm",
+  "Moldavia": "md",
+  "Mónaco": "mc",
+  "Mongolia": "mn",
+  "Montenegro": "me",
+  "Marruecos": "ma",
+  "Mozambique": "mz",
+  "Myanmar": "mm",
+  "Namibia": "na",
+  "Nauru": "nr",
+  "Nepal": "np",
+  "Países Bajos": "nl",
+  "Nueva Zelanda": "nz",
+  "Nicaragua": "ni",
+  "Níger": "ne",
+  "Nigeria": "ng",
+  "Noruega": "no",
+  "Omán": "om",
+  "Pakistán": "pk",
+  "Palau": "pw",
+  "Panamá": "pa",
+  "Papúa Nueva Guinea": "pg",
+  "Paraguay": "py",
+  "Perú": "pe",
+  "Filipinas": "ph",
+  "Polonia": "pl",
+  "Portugal": "pt",
+  "Catar": "qa",
+  "Rumanía": "ro",
+  "Rusia": "ru",
+  "Ruanda": "rw",
+  "San Cristóbal y Nieves": "kn",
+  "Santa Lucía": "lc",
+  "San Vicente y las Granadinas": "vc",
+  "Samoa": "ws",
+  "San Marino": "sm",
+  "Santo Tomé y Príncipe": "st",
+  "Arabia Saudita": "sa",
+  "Senegal": "sn",
+  "Serbia": "rs",
+  "Seychelles": "sc",
+  "Sierra Leona": "sl",
+  "Singapur": "sg",
+  "Eslovaquia": "sk",
+  "Eslovenia": "si",
+  "Islas Salomón": "sb",
+  "Somalia": "so",
+  "Sudáfrica": "za",
+  "Sudán": "sd",
+  "Sudán del Sur": "ss",
+  "España": "es",
+  "Sri Lanka": "lk",
+  "Sudán": "sd",
+  "Surinam": "sr",
+  "Suecia": "se",
+  "Suiza": "ch",
+  "Siria": "sy",
+  "Taiwán": "tw",
+  "Tayikistán": "tj",
+  "Tanzania": "tz",
+  "Tailandia": "th",
+  "Timor Oriental": "tl",
+  "Togo": "tg",
+  "Tonga": "to",
+  "Trinidad y Tobago": "tt",
+  "Túnez": "tn",
+  "Turquía": "tr",
+  "Turkmenistán": "tm",
+  "Tuvalu": "tv",
+  "Uganda": "ug",
+  "Ucrania": "ua",
+  "Emiratos Árabes Unidos": "ae",
+  "Reino Unido": "gb",
+  "Estados Unidos": "us",
+  "Uruguay": "uy",
+  "Uzbekistán": "uz",
+  "Vanuatu": "vu",
+  "Vaticano": "va",
+  "Venezuela": "ve",
+  "Vietnam": "vn",
+  "Yemen": "ye",
+  "Zambia": "zm",
+  "Zimbabue": "zw"
+};
+
+
+  // Obtener todos los elementos de bandera
+  document.querySelectorAll('[id^="flag-"]').forEach(img => {
+    const pais = img.nextElementSibling.innerText.trim();
+    const codigo = countryCodes[pais];
+    if (codigo) {
+      img.src = `https://flagcdn.com/24x18/${codigo}.png`;
+    } else {
+      img.alt = "Sin bandera";
+    }
+  });
+</script>
 
 </body>
 </html>

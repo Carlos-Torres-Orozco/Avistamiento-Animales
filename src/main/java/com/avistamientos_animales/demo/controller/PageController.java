@@ -15,10 +15,10 @@ public class PageController {
         return "especies";  // Carga templates/especies.html
     }
 
-    @GetMapping("/animales")
-    public String animales() {
-        return "animales";  // Carga templates/animales.html
-    }
+    // @GetMapping("/animales")
+    // public String animales() {
+    //     return "animales";  // Carga templates/animales.html
+    // }
 
     // @GetMapping("/avistamientos")
     // public String avistamientos() {

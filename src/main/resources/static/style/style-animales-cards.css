@@ -1,0 +1,97 @@
+body.modern-page {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: #f4f7f9;
+  color: #111827;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: #1f2937;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.header h1 { margin:0; font-size:26px; }
+
+.nav ul { list-style: none; display:flex; gap:15px; justify-content:center; padding:0; margin:0;}
+.nav a { text-decoration:none; padding:8px 16px; border-radius:8px; background:#374151; color:#e5e7eb; font-weight:600; transition:0.2s;}
+.nav a:hover { background:#4b5563; }
+
+.contenido {
+  flex:1;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card-animal {
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-animal:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Diferenciación de animales protegidos */
+.card-animal.protegido {
+  border-left: 5px solid #2563eb; /* Azul para protegidos */
+}
+.card-animal.no-protegido {
+  border-left: 5px solid #f59e0b; /* Naranja para no protegidos */
+}
+
+.botones-card {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.editar { background-color: #2563eb; color:white;}
+.btn.editar:hover { background-color: #1d4ed8; }
+
+.btn.eliminar { background-color: #ef4444; color:white;}
+.btn.eliminar:hover { background-color: #dc2626; }
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px;
+  background-color: #1f2937;
+  color: white;
+}
+
+@media (max-width:700px){
+  .grid-cards { grid-template-columns: 1fr; }
+}

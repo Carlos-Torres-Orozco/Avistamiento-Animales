@@ -4,56 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consultar Animales</title>
-  <link rel="stylesheet" href="/style/style-general.css">
-  <link rel="stylesheet" href="/style/style-tablas.css">
+  <link rel="stylesheet" href="/style/style-animales-cards.css">
 </head>
-<body>
+<body class="modern-page">
 
-<header>
+<header class="header">
   <h1>Lista de Animales</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/animales" class="activo">Animales</a></li>
-      <li><a href="/animales/agregar">Agregar</a></li>
+      <li><a href="/animales" class="btn-regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
-    <h2>Registros de Animales</h2>
+<main class="contenido">
+  <section class="grid-cards">
+    <div th:each="ani : ${animales}" 
+         class="card-animal" 
+         th:classappend="${ani.protegido == 'S'} ? ' protegido' : ' no-protegido'">
 
-    <table class="tabla-datos">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre Comun</th>
-          <th>Especie</th>
-          <th>Estado de conservación</th>
-          <th>Protegido</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="ani : ${animales}">
-          <td th:text="${ani.idAnimal}"></td>
-          <td th:text="${ani.nombreComun}"></td>
-          <td th:text="${ani.especie.nombre}"></td>
-          <td th:text="${ani.estadoConservacion}"></td>
-          <td th:text="${ani.protegido}"></td>
-          <td>
-              <a th:href="@{'/animales/editar/' + ${ani.idAnimal}}" class="boton editar">Editar</a>
-              <a th:href="@{'/animales/eliminar/' + ${ani.idAnimal}}" class="boton eliminar"
-              onclick="return confirm('¿Seguro que deseas eliminar este animal, se eliminaran los registros que dependen de ella?')">Eliminar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <h3 th:text="${ani.nombreComun}">Nombre Común</h3>
+      <p><strong>Especie:</strong> <span th:text="${ani.especie.nombre}"></span></p>
+      <p><strong>Estado de conservación:</strong> <span th:text="${ani.estadoConservacion}"></span></p>
+      <p><strong>Protegido:</strong> <span th:text="${ani.protegido == 'S' ? 'Sí' : 'No'}"></span></p>
+
+      <div class="botones-card">
+        <a th:href="@{'/animales/editar/' + ${ani.idAnimal}}" class="btn editar">Editar</a>
+        <a th:href="@{'/animales/eliminar/' + ${ani.idAnimal}}" 
+           class="btn eliminar"
+           onclick="return confirm('¿Seguro que deseas eliminar este animal, se eliminarán los registros que dependen de él?')">
+           Eliminar
+        </a>
+      </div>
+    </div>
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
 

@@ -2,28 +2,27 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar Ubicación</title>
-  <link rel="stylesheet" th:href="@{/style/style-general.css}">
-  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+  <link rel="stylesheet" th:href="@{/style/style-animales-form.css}">
 </head>
-<body>
+<body class="modern-page">
 
-<header>
+<header class="header">
   <h1>Editar Ubicación</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/ubicaciones">Volver</a></li>
+      <li><a href="/ubicaciones" class="btn-regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
+<main class="contenido">
+  <section class="tarjeta form-card">
     <h2>Actualizar Datos de la Ubicación</h2>
 
-    <form th:action="@{/ubicaciones/actualizar}" th:object="${ubicacion}" method="post" class="formulario">
-      
+    <form th:action="@{/ubicaciones/actualizar}" th:object="${ubicacion}" method="post">
+
       <div class="campo">
         <label>ID (no editable):</label>
         <input type="text" th:field="*{idUbicacion}" readonly />
@@ -31,22 +30,22 @@
 
       <div class="campo">
         <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" required />
+        <input type="text" th:field="*{nombre}" placeholder="Nombre" required />
       </div>
 
       <div class="campo">
         <label>País:</label>
-        <input type="text" th:field="*{pais}" required />
+        <input type="text" th:field="*{pais}" placeholder="País" required />
       </div>
 
       <div class="campo">
-        <label>Region:</label>
-        <input type="text" th:field="*{region}" required />
+        <label>Región:</label>
+        <input type="text" th:field="*{region}" placeholder="Región" required />
       </div>
 
       <div class="campo">
-        <label>Habitad:</label>
-        <input type="text" th:field="*{habitad}" required />
+        <label>Habitat:</label>
+        <input type="text" th:field="*{habitad}" placeholder="Habitat" required />
       </div>
 
       <div class="botones-formulario">
@@ -61,5 +60,6 @@
 <footer>
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
+
 </body>
 </html>
