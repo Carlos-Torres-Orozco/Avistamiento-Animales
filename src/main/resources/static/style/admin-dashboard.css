@@ -1,0 +1,156 @@
+/* === Layout general === */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
+    background: #f3f6fb;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* === Barra lateral === */
+.sidebar {
+    width: 260px;
+    background: #1e3c72;
+    color: #fff;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.user-info {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.user-info .name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.user-info .role {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.menu a {
+    display: block;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.logout {
+    margin-top: auto;
+    text-align: center;
+    padding: 12px;
+    color: #fff;
+    background: #e63946;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.logout:hover {
+    background: #cf2c38;
+}
+
+/* === Contenido principal === */
+.content {
+    flex: 1;
+    padding: 40px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #1e3c72;
+}
+
+.page-header p {
+    font-size: 16px;
+    color: #666;
+}
+
+.cards {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+/* === Tarjetas === */
+.card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.card .icon {
+    font-size: 40px;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #1e3c72;
+}
+
+.card p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+}
+/* ------------------------- */
+/* BOTÓN CERRAR SESIÓN */
+/* ------------------------- */
+
+.btn-logout {
+  background: #dc2626;
+  color: white !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: inline-block;
+}
+
+.btn-logout:hover {
+  background: #b91c1c;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}

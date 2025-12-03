@@ -1,34 +1,70 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Panel de Administración</title>
-  <link rel="stylesheet" th:href="@{/style/style-general.css}">
-  <link rel="stylesheet" th:href="@{/style/style-dashboard.css}">
+    <meta charset="UTF-8">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" th:href="@{/style/admin-dashboard.css}">
 </head>
 <body>
 
-<header>
-  <h1>Panel de Administración</h1>
-  <p th:text="'Bienvenido, ' + ${usuario.nombre} + ' (' + ${usuario.rol} + ')'"></p>
-  <a th:href="@{/logout}" class="logout-btn">Cerrar sesión</a>
-</header>
+<div class="layout">
 
-<main>
-  <section class="menu-dashboard">
-    <h2>Secciones del Sistema</h2>
-    <ul>
-      <li><a th:href="@{/animales}">🐾 Animales</a></li>
-      <li><a th:href="@{/avistamientos}">📷 Avistamientos</a></li>
-      <li><a th:href="@{/ubicaciones}">📍 Ubicaciones</a></li>
-      <li><a th:href="@{/observadores}">👥 Observadores</a></li>
-    </ul>
-  </section>
-</main>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <h2 class="logo">Admin</h2>
 
-<footer>
-  <p>© 2025 Sistema de Avistamientos | Admin</p>
-</footer>
+        <div class="user-info">
+            <p class="name" th:text="${usuario.nombre}"></p>
+            <p class="role" th:text="${usuario.rol}"></p>
+        </div>
+
+        <nav class="menu">
+            <a th:href="@{/animales}">🐾 Animales</a>
+            <a th:href="@{/avistamientos}">📷 Avistamientos</a>
+            <a th:href="@{/ubicaciones}">📍 Ubicaciones</a>
+            <a th:href="@{/observadores}">👥 Observadores</a>
+        </nav>
+
+        <a th:href="@{/logout}" class="logout">Cerrar Sesión</a>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="content">
+        <header class="page-header">
+            <h1>Panel de Administración</h1>
+            <p>Bienvenido al centro de gestión del sistema.</p>
+        </header>
+
+        <section class="cards">
+
+            <div class="card" th:onclick="'location.href=\'/animales\''">
+                <span class="icon">🐾</span>
+                <h3>Animales</h3>
+                <p>Administrar especies registradas</p>
+            </div>
+
+            <div class="card" th:onclick="'location.href=\'/avistamientos\''">
+                <span class="icon">📷</span>
+                <h3>Avistamientos</h3>
+                <p>Revisar reportes del sistema</p>
+            </div>
+
+            <div class="card" th:onclick="'location.href=\'/ubicaciones\''">
+                <span class="icon">📍</span>
+                <h3>Ubicaciones</h3>
+                <p>Gestionar puntos geográficos</p>
+            </div>
+
+            <div class="card" th:onclick="'location.href=\'/observadores\''">
+                <span class="icon">👥</span>
+                <h3>Observadores</h3>
+                <p>Administrar cuentas de usuarios</p>
+            </div>
+
+        </section>
+    </main>
+
+</div>
 
 </body>
 </html>

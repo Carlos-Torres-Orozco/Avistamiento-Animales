@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ObservadorHomeController {
 
     @GetMapping("/home")
-    public String home() {
+    public String observadorHome() {
         return "observador-home";
     }
 }

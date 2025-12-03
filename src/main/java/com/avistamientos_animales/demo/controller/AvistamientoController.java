@@ -1,5 +1,7 @@
 package com.avistamientos_animales.demo.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.avistamientos_animales.demo.model.Avistamiento;
+import com.avistamientos_animales.demo.model.Observador;
 import com.avistamientos_animales.demo.service.AnimalService;
 import com.avistamientos_animales.demo.service.AvistamientoService;
 import com.avistamientos_animales.demo.service.ObservadorService;
@@ -100,4 +103,13 @@ public class AvistamientoController {
             return "redirect:/avistamientos/consultar";
         }
     }
+    @GetMapping("")
+    public String vistaPrincipal(Model model, Principal principal) {
+
+    // Recupera al usuario desde Spring Security
+    Observador usuario = observadorService.buscarPorCorreo(principal.getName());
+
+    model.addAttribute("usuario", usuario);
+    return "avistamientos"; // tu avistamientos.html
+}
 }

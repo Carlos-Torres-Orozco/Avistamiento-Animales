@@ -4,73 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agregar Especie</title>
-  <link rel="stylesheet" th:href="@{/style/style-general.css}">
-  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
-</head>
-<body>
 
-<header>
+  <!-- Estilos base y estilos del formulario -->
+  <link rel="stylesheet" th:href="@{/style/style-especies-form.css}">
+</head>
+
+<body class="modern-page">
+
+<header class="header">
   <h1>Agregar Especie</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/especies" class="activo">Especies</a></li>
+      <li><a href="/especies" class="btn-regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
-    <h2>Formulario de Nuevo Observador</h2>
-    <form th:action="@{/especies/guardar}" th:object="${especie}" method="post" class="formulario">
-      
+<main class="contenido">
+
+  <section class="tarjeta form-card">
+
+    <h2>Nueva Especie</h2>
+
+    <form th:action="@{/especies/guardar}" th:object="${especie}" method="post">
+
       <div class="campo">
         <label>Nombre Científico:</label>
-        <input type="text" th:field="*{nombre}" placeholder="Nombre Científico" required />
+        <input type="text" th:field="*{nombre}" required />
       </div>
-      
+
       <div class="campo">
-        <label>Genero:</label>
-        <input type="text" th:field="*{genero}" placeholder="Genero" required />
+        <label>Género:</label>
+        <input type="text" th:field="*{genero}" required />
       </div>
 
       <div class="campo">
         <label>Familia:</label>
-        <input type="text" th:field="*{familia}" placeholder="Familia" required />
+        <input type="text" th:field="*{familia}" required />
       </div>
 
       <div class="campo">
         <label>Orden:</label>
-        <input type="text" th:field="*{orden}" placeholder="Orden" required />
+        <input type="text" th:field="*{orden}" required />
       </div>
 
       <div class="campo">
         <label>Clase:</label>
-        <input type="text" th:field="*{clase}" placeholder="Clase" required />
+        <input type="text" th:field="*{clase}" required />
       </div>
 
       <div class="campo">
         <label>Filo:</label>
-        <input type="text" th:field="*{filo}" placeholder="Filo" required />
+        <input type="text" th:field="*{filo}" required />
       </div>
 
       <div class="campo">
         <label>Descripción:</label>
-        <input type="text" th:field="*{descripcion}" placeholder="Descripción" required />
+        <textarea th:field="*{descripcion}" required></textarea>
       </div>
 
       <div class="botones-formulario">
-        <button type="submit" class="boton agregar">Guardar</button>
-        <a href="/especies" class="boton cancelar">Cancelar</a>
+        <button type="submit" class="btn guardar">Guardar</button>
+        <a href="/especies" class="btn cancelar">Cancelar</a>
       </div>
-      
+
     </form>
+
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
 
 </body>
+
 </html>

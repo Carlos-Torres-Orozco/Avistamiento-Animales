@@ -1,57 +1,75 @@
-/* ====== ESTILO GENERAL ====== */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #fdfdfd;
-  color: #333;
+/* ========================================= */
+/*  style-general.css (versión corregida)    */
+/*  NO afecta a páginas con class="modern-page" */
+/* ========================================= */
+
+/* ===== RESET SOLO PARA PÁGINAS ANTIGUAS ===== */
+body:not(.modern-page) header,
+body:not(.modern-page) footer,
+body:not(.modern-page) nav ul li a,
+body:not(.modern-page) nav ul,
+body:not(.modern-page) button {
+  all: unset;
+  display: revert;
+}
+
+/* Variables de color */
+:root {
+  --bg: #f4f4f4;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --card-radius: 12px;
+}
+
+/* ========================== */
+/* REGLAS NEUTRAS — SOLO ANTIGUAS */
+/* ========================== */
+body:not(.modern-page) {
   margin: 0;
   padding: 0;
+  font-family: "Inter", Roboto, Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
-header, footer {
-  background-color: #0077cc;
-  color: white;
-  padding: 15px;
+/* Links */
+body:not(.modern-page) a {
+  color: inherit;
+}
+
+/* Contenedor principal */
+body:not(.modern-page) main {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Footer antiguo */
+body:not(.modern-page) .footer {
   text-align: center;
+  padding: 20px 0;
+  color: var(--muted);
 }
 
-nav ul {
-  list-style: none;
+/* Helpers */
+body:not(.modern-page) .container-center {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 0;
+  align-items: center;
 }
 
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav ul li a.activo {
-  text-decoration: underline;
-}
-
-main {
-  padding: 20px;
-}
-
-.contenido h2 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* Botones genéricos */
-button {
+/* Botones antiguos */
+body:not(.modern-page) button {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  padding: 10px 25px;
-  font-weight: bold;
-  font-size: 16px;
-  transition: background-color 0.2s, transform 0.2s;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform .18s ease, box-shadow .18s ease;
+  background: #e5e7eb;
+  color: var(--text);
 }
-
-button:hover {
-  transform: translateY(-3px);
+body:not(.modern-page) button:hover {
+  transform: translateY(-2px);
 }

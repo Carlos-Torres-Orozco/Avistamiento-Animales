@@ -1,54 +1,48 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestión de Especies</title>
-  <!-- Estilo general del sistema -->
-  <link rel="stylesheet" href="style/style-general.css">
-  <!-- Estilo específico de especies -->
-  <link rel="stylesheet" href="style/style-especies.css">
+
+  <!-- General primero, luego específico -->
+  <link rel="stylesheet" th:href="@{/style/style-general.css}">
+  <link rel="stylesheet" th:href="@{/style/style-especies.css}">
 </head>
-<body>
 
-  <header>
-    <h1>Gestión de Especies</h1>
-    <nav>
-      <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/gestion">Gestión</a></li>
-        <li><a href="/especies" class="activo">Especies</a></li>
-        <li><a href="/animales">Animales</a></li>
-        <li><a href="/avistamientos">Avistamientos</a></li>
-        <li><a href="/ubicaciones">Ubicaciones</a></li>
-        <li><a href="/observadores">Observadores</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="modern-page">
 
-  <main>
-    <section class="contenido">
-      <h2>Administrar Especies</h2>
+<header class="header">
+  <h1>Gestión de Especies</h1>
 
-      <!-- Submenú CRUD -->
-      <div class="submenu">
-        <button onclick="location.href='/especies/agregar'">Agregar</button>
-        <button onclick="location.href='/especies/consultar'">Consultar / Actualizar / Eliminar</button>
-      </div>
+  <nav class="nav">
+    <ul>
+      <li><a th:href="@{/admin/home}" class="btn-regresar">Regresar</a></li>
+      <li><a th:href="@{/logout}" class="btn-logout">Cerrar Sesión</a></li>
+    </ul>
+  </nav>
+</header>
 
-      <!-- Contenido dinámico -->
-      <div class="contenido-dinamico">
-        <p>
-          Aquí podrás registrar y gestionar todos los avistamientos realizados por las especies.
-          Utiliza los botones del submenú para comenzar.
-        </p>
-      </div>
-    </section>
-  </main>
+<main class="contenido">
 
-  <footer>
-    <p>© 2025 Sistema de Avistamientos</p>
-  </footer>
+  <section class="tarjeta">
+    <h2>Administrar Especies</h2>
+    <p class="descripcion">
+      Gestiona el catálogo de especies del sistema. Selecciona una acción para comenzar.
+    </p>
+
+    <div class="grid-acciones">
+      <a th:href="@{/especies/agregar}" class="accion">➕ Agregar Especie</a>
+      <a th:href="@{/especies/consultar}" class="accion">📄 Consultar / Editar / Eliminar</a>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
 
 </body>
 </html>

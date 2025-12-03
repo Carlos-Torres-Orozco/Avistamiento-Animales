@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Avistamientos</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(to bottom right, #0e4d62, #0b2e3c);
+            color: white;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.4rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 70px auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .description {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        a.button {
+            padding: 15px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.3s ease;
+            border: 2px solid white;
+            color: white;
+        }
+
+        a.button:hover {
+            background: white;
+            color: #0b2e3c;
+        }
+
+        footer {
+            margin-top: 70px;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            display: block;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sistema de Avistamientos de Fauna</h1>
+</header>
+
+<div class="container">
+
+    <img class="hero-image"
+        src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River_2.JPG"
+        alt="Naturaleza">
+
+    <p class="tagline">Explora, registra y administra avistamientos de especies en su entorno natural.</p>
+
+    <p class="description">
+        Este sistema está diseñado para investigadores y observadores que buscan
+        recolectar y gestionar información sobre especies animales, ubicaciones y avistamientos
+        en campo.  
+        <br><br>
+        Únete como observador, comparte tus registros, o inicia sesión para administrar toda la información.
+    </p>
+
+    <div class="buttons">
+        <a href="/login" class="button">Iniciar Sesión</a>
+        <a href="/observadores/crear-cuenta" class="button">Registrarse</a>
+    </div>
+</div>
+
+<footer>
+    © 2025 Sistema de Avistamientos — Proyecto Académico
+</footer>
+
+</body>
+</html>

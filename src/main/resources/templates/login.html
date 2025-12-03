@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" th:href="@{/style/style-general.css}">
+    <link rel="stylesheet" th:href="@{/style/login.css}">
 </head>
 <body>
 
-<header>
-    <h1>Iniciar Sesión</h1>
-</header>
+<div class="container">
+    <div class="login-box">
 
-<main>
-    <section class="contenido">
-        <form th:action="@{/login}" th:object="${loginData}" method="post">
+        <h2>Iniciar Sesión</h2>
+        <p class="subtitle">Accede para gestionar los avistamientos</p>
 
-            <div class="campo">
-                <label>Correo:</label>
-                <input type="email" th:field="*{correo}" required/>
+        <form method="post" th:action="@{/login}">
+            <div class="input-group">
+                <label>Correo</label>
+                <input type="email" name="username" required>
             </div>
 
-            <div class="campo">
-                <label>Contraseña:</label>
-                <input type="password" th:field="*{contrasena}" required/>
+            <div class="input-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" required>
             </div>
 
-            <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+            <p th:if="${param.error}" class="error">Credenciales incorrectas</p>
 
-            <button type="submit">Entrar</button>
+            <button type="submit" class="btn">Entrar</button>
+
+            <p class="register">
+                ¿No tienes cuenta? 
+                <a th:href="@{/observadores/crear-cuenta}">Regístrate aquí</a>
+            </p>
         </form>
-    </section>
-</main>
+
+    </div>
+</div>
 
 </body>
 </html>

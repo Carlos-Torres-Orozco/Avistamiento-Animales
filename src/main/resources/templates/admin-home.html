@@ -4,40 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de Administración</title>
-  <link rel="stylesheet" th:href="@{/style/style.css}">
+  <link rel="stylesheet" th:href="@{/style/admin-panel.css}">
 </head>
+
 <body>
 
-<header>
+<header class="header">
   <h1>Panel de Administración</h1>
-  <nav>
+
+  <nav class="nav">
     <ul>
-      <li><a href="/" class="activo">Inicio</a></li>
-      <li><a href="/admin/home">Administrador</a></li>
-      <li><a href="/logout">Cerrar Sesión</a></li>
+      <li><a href="/logout" class="btn-logout">Cerrar Sesión</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="menu-principal">
+<main class="contenido">
+
+  <section class="tarjeta">
     <h2>Gestión del Sistema</h2>
+    <p>Selecciona un módulo para administrar la información del sistema.</p>
 
-    <p>Selecciona un módulo para administrar los datos del sistema.</p>
+    <div class="grid-modulos">
 
-    <div class="botones-modulos">
+      <a href="/especies" class="modulo">🧬 Especies</a>
+      <a href="/animales" class="modulo">🐾 Animales</a>
+      <a href="/avistamientos" class="modulo">📷 Avistamientos</a>
+      <a href="/ubicaciones" class="modulo">📍 Ubicaciones</a>
+      <a href="/observadores" class="modulo">👥 Observadores</a>
 
-      <!-- Módulos iguales que tu vista de gestión -->
-      <button onclick="location.href='/especies'">Especies</button>
-      <button onclick="location.href='/animales'">Animales</button>
-      <button onclick="location.href='/avistamientos'">Avistamientos</button>
-      <button onclick="location.href='/ubicaciones'">Ubicaciones</button>
-      <button onclick="location.href='/observadores'">Observadores</button>
     </div>
   </section>
+
 </main>
 
-<footer>
+<footer class="footer">
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
 

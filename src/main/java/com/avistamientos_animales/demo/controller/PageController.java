@@ -5,11 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping("/")
-    public String inicio() {
-        return "index";  // Carga templates/index.html
-    }
-
     @GetMapping("/gestion")
     public String gestion() {
         return "gestion";  // Carga templates/gestion.html
@@ -25,10 +20,10 @@ public class PageController {
         return "animales";  // Carga templates/animales.html
     }
 
-    @GetMapping("/avistamientos")
-    public String avistamientos() {
-        return "avistamientos";  // Carga templates/avistamientos.html
-    }
+    // @GetMapping("/avistamientos")
+    // public String avistamientos() {
+    //     return "avistamientos";  // Carga templates/avistamientos.html
+    // }
 
     @GetMapping("/ubicaciones")
     public String ubicaciones() {

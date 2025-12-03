@@ -4,59 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consultar Especies</title>
-  <link rel="stylesheet" href="/style/style-general.css">
-  <link rel="stylesheet" href="/style/style-tablas.css">
+
+  <!-- Estilos generales modernos -->
+  <link rel="stylesheet" href="/style/style-especies-cards.css">
 </head>
-<body>
+
+<body class="modern-page">
 
 <header>
   <h1>Lista de Especies</h1>
   <nav>
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/especies" class="activo">Especies</a></li>
-      <li><a href="/especies/agregar">Agregar</a></li>
+      <li><a href="/especies" class="btn.regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
-    <h2>Registros de Especies</h2>
+<main class="contenido">
 
-    <table class="tabla-datos">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre Científico</th>
-          <th>Genero</th>
-          <th>Familia</th>
-          <th>Orden</th>
-          <th>Clase</th>
-          <th>Filo</th>
-          <th>Descripción</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="esp : ${especies}">
-          <td th:text="${esp.idEspecie}"></td>
-          <td th:text="${esp.nombre}"></td>
-          <td th:text="${esp.genero}"></td>
-          <td th:text="${esp.familia}"></td>
-          <td th:text="${esp.orden}"></td>
-          <td th:text="${esp.clase}"></td>
-          <td th:text="${esp.filo}"></td>
-            <td th:text="${esp.descripcion}"></td>
-          <td>
-              <a th:href="@{'/especies/editar/' + ${esp.idEspecie}}" class="boton editar">Editar</a>
-              <a th:href="@{'/especies/eliminar/' + ${esp.idEspecie}}" class="boton eliminar"
-              onclick="return confirm('¿Seguro que deseas eliminar esta especie, se eliminaran los registros que dependen de ella?')">Eliminar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <section class="grid-cards">
+    <div th:each="esp : ${especies}" class="card-especie">
+
+      <h3 th:text="${esp.nombre}">Nombre Científico</h3>
+      <p><strong>Género:</strong> <span th:text="${esp.genero}"></span></p>
+      <p><strong>Familia:</strong> <span th:text="${esp.familia}"></span></p>
+      <p><strong>Orden:</strong> <span th:text="${esp.orden}"></span></p>
+      <p><strong>Clase:</strong> <span th:text="${esp.clase}"></span></p>
+      <p><strong>Filo:</strong> <span th:text="${esp.filo}"></span></p>
+      <p><strong>Descripción:</strong> <span th:text="${esp.descripcion}"></span></p>
+
+      <div class="botones-card">
+        <a th:href="@{'/especies/editar/' + ${esp.idEspecie}}" class="btn editar">Editar</a>
+        <a th:href="@{'/especies/eliminar/' + ${esp.idEspecie}}" class="btn eliminar"
+           onclick="return confirm('¿Seguro que deseas eliminar esta especie?')">Eliminar</a>
+      </div>
+
+    </div>
   </section>
+
 </main>
 
 <footer>

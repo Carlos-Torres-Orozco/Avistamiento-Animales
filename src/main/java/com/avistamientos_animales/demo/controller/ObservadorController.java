@@ -1,6 +1,7 @@
 package com.avistamientos_animales.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ import com.avistamientos_animales.demo.service.ObservadorService;
 public class ObservadorController {
      @Autowired
     private ObservadorService observadorService;
+
+    @Autowired
+        private PasswordEncoder passwordEncoder;
 
     //Mostrar lista de observadores
     @GetMapping("/consultar")
@@ -28,11 +32,15 @@ public class ObservadorController {
         return "observador-agregar";
     }
 
-    // Guardar observador
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Observador observador) {
+
+        String encrypted = passwordEncoder.encode(observador.getContrasena());
+        observador.setContrasena(encrypted);
+
         observadorService.guardar(observador);
-        return "redirect:/";
+
+        return "redirect:/login";
     }
 
     // Eliminar
