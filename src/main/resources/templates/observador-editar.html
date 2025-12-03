@@ -2,58 +2,79 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar Observador</title>
-  <link rel="stylesheet" th:href="@{/style/style-general.css}">
-  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+  <link rel="stylesheet" th:href="@{/style/style-animales-form.css}">
 </head>
-<body>
+<body class="modern-page">
 
-<header>
+<header class="header">
   <h1>Editar Observador</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/observadores">Volver</a></li>
+      <li><a href="/observadores" class="btn-regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
+<main class="contenido">
+  <section class="tarjeta">
+
     <h2>Actualizar Datos del Observador</h2>
 
     <form th:action="@{/observadores/actualizar}" th:object="${observador}" method="post" class="formulario">
       
+      <!-- ID (no editable) -->
       <div class="campo">
         <label>ID (no editable):</label>
         <input type="text" th:field="*{idObservador}" readonly />
       </div>
 
+      <!-- Nombre -->
       <div class="campo">
         <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" required />
+        <input type="text" th:field="*{nombre}" placeholder="Nombre completo" required />
       </div>
 
+      <!-- Apellido -->
       <div class="campo">
         <label>Apellido:</label>
-        <input type="text" th:field="*{apellido}" required />
+        <input type="text" th:field="*{apellido}" placeholder="Apellido" required />
       </div>
 
+      <!-- Correo -->
       <div class="campo">
         <label>Correo:</label>
-        <input type="email" th:field="*{correo}" required />
+        <input type="email" th:field="*{correo}" placeholder="correo@ejemplo.com" required />
       </div>
 
+      <!-- País -->
       <div class="campo">
         <label>País:</label>
-        <input type="text" th:field="*{pais}" required />
+        <select th:field="*{pais}" required>
+          <option value="" disabled>Selecciona un país</option>
+          <option th:each="pais : ${paises}" th:value="${pais}" th:text="${pais}" 
+                  th:selected="${pais == observador.pais}"></option>
+        </select>
       </div>
 
+      <!-- Institución -->
       <div class="campo">
         <label>Institución:</label>
-        <input type="text" th:field="*{institucion}" required />
+        <input type="text" th:field="*{institucion}" placeholder="Institución a la que pertenece" required />
       </div>
 
+      <!-- Rol -->
+      <div class="campo">
+        <label>Rol:</label>
+        <select th:field="*{rol}" required>
+          <option value="" disabled>Selecciona un rol</option>
+          <option value="admin" th:text="'Administrador'" th:selected="${observador.rol == 'admin'}"></option>
+          <option value="observador" th:text="'Observador'" th:selected="${observador.rol == 'observador'}"></option>
+        </select>
+      </div>
+
+      <!-- Botones -->
       <div class="botones-formulario">
         <button type="submit" class="boton agregar">Guardar cambios</button>
         <a href="/observadores" class="boton cancelar">Cancelar</a>
@@ -66,5 +87,6 @@
 <footer>
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
+
 </body>
 </html>

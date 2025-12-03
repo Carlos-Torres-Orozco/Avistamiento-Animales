@@ -4,60 +4,268 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consultar Observadores</title>
-  <link rel="stylesheet" href="/style/style-general.css">
-  <link rel="stylesheet" href="/style/style-tablas.css">
+  <link rel="stylesheet" th:href="@{/style/style-animales-cards.css}">
 </head>
-<body>
+<body class="modern-page">
 
-<header>
+<header class="header">
   <h1>Lista de Observadores</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/observadores" class="activo">Observadores</a></li>
-      <li><a href="/observadores/agregar">Agregar</a></li>
+      <li><a href="/observadores" class="btn-regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
-    <h2>Registros de Observadores</h2>
+<main class="contenido">
+  <section class="grid-cards">
 
-    <table class="tabla-datos">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Correo</th>
-          <th>País</th>
-          <th>Institución</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="obs : ${observadores}">
-          <td th:text="${obs.idObservador}"></td>
-          <td th:text="${obs.nombre}"></td>
-          <td th:text="${obs.apellido}"></td>
-          <td th:text="${obs.correo}"></td>
-          <td th:text="${obs.pais}"></td>
-          <td th:text="${obs.institucion}"></td>
-          <td>
-              <a th:href="@{'/observadores/editar/' + ${obs.idObservador}}" class="boton editar">Editar</a>
-              <a th:href="@{'/observadores/eliminar/' + ${obs.idObservador}}" class="boton eliminar"
-              onclick="return confirm('¿Seguro que deseas eliminar este observador?')">Eliminar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div th:each="obs : ${observadores}" class="card-animal">
+
+      <h3 th:text="${obs.nombre} + ' ' + ${obs.apellido}">Nombre Observador</h3>
+
+      <!-- Correo -->
+      <p><strong>Correo:</strong> <span th:text="${obs.correo}"></span></p>
+
+      <!-- País con bandera -->
+      <p>
+        <strong>País:</strong>
+        <img th:id="'flag-' + ${obs.idObservador}" 
+             alt="Bandera" 
+             style="vertical-align:middle; margin-right:5px; width:24px; height:18px;">
+        <span th:text="${obs.pais}"></span>
+      </p>
+
+      <!-- Institución -->
+      <p><strong>Institución:</strong> <span th:text="${obs.institucion}"></span></p>
+
+      <!-- Rol -->
+      <p><strong>Rol:</strong> <span th:text="${obs.rol == 'admin' ? 'Administrador' : 'Observador'}"></span></p>
+
+      <div class="botones-card">
+        <a th:href="@{'/observadores/editar/' + ${obs.idObservador}}" class="btn editar">Editar</a>
+        <a th:href="@{'/observadores/eliminar/' + ${obs.idObservador}}" class="btn eliminar"
+           onclick="return confirm('¿Seguro que deseas eliminar este observador?')">Eliminar</a>
+      </div>
+
+    </div>
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
+
+<script>
+  // Mapa de nombres de país a código ISO (puedes expandirlo según tus países)
+  const countryCodes = {
+  "Afganistán": "af",
+  "Albania": "al",
+  "Argelia": "dz",
+  "Andorra": "ad",
+  "Angola": "ao",
+  "Antigua y Barbuda": "ag",
+  "Argentina": "ar",
+  "Armenia": "am",
+  "Australia": "au",
+  "Austria": "at",
+  "Azerbaiyán": "az",
+  "Bahamas": "bs",
+  "Baréin": "bh",
+  "Bangladés": "bd",
+  "Barbados": "bb",
+  "Bielorrusia": "by",
+  "Bélgica": "be",
+  "Belice": "bz",
+  "Benín": "bj",
+  "Bután": "bt",
+  "Bolivia": "bo",
+  "Bosnia y Herzegovina": "ba",
+  "Botsuana": "bw",
+  "Brasil": "br",
+  "Brunéi": "bn",
+  "Bulgaria": "bg",
+  "Burkina Faso": "bf",
+  "Burundi": "bi",
+  "Cabo Verde": "cv",
+  "Camboya": "kh",
+  "Camerún": "cm",
+  "Canadá": "ca",
+  "República Centroafricana": "cf",
+  "Chad": "td",
+  "Chile": "cl",
+  "China": "cn",
+  "Colombia": "co",
+  "Comoras": "km",
+  "Congo": "cg",
+  "República Democrática del Congo": "cd",
+  "Costa Rica": "cr",
+  "Croacia": "hr",
+  "Cuba": "cu",
+  "Chipre": "cy",
+  "República Checa": "cz",
+  "Dinamarca": "dk",
+  "Yibuti": "dj",
+  "Dominica": "dm",
+  "República Dominicana": "do",
+  "Ecuador": "ec",
+  "Egipto": "eg",
+  "El Salvador": "sv",
+  "Guinea Ecuatorial": "gq",
+  "Eritrea": "er",
+  "Estonia": "ee",
+  "Esuatini": "sz",
+  "Etiopía": "et",
+  "Fiyi": "fj",
+  "Finlandia": "fi",
+  "Francia": "fr",
+  "Gabón": "ga",
+  "Gambia": "gm",
+  "Georgia": "ge",
+  "Alemania": "de",
+  "Ghana": "gh",
+  "Grecia": "gr",
+  "Granada": "gd",
+  "Guatemala": "gt",
+  "Guinea": "gn",
+  "Guinea-Bisáu": "gw",
+  "Guyana": "gy",
+  "Haití": "ht",
+  "Honduras": "hn",
+  "Hungría": "hu",
+  "Islandia": "is",
+  "India": "in",
+  "Indonesia": "id",
+  "Irán": "ir",
+  "Iraq": "iq",
+  "Irlanda": "ie",
+  "Israel": "il",
+  "Italia": "it",
+  "Jamaica": "jm",
+  "Japón": "jp",
+  "Jordania": "jo",
+  "Kazajistán": "kz",
+  "Kenia": "ke",
+  "Kiribati": "ki",
+  "Corea del Norte": "kp",
+  "Corea del Sur": "kr",
+  "Kuwait": "kw",
+  "Kirguistán": "kg",
+  "Laos": "la",
+  "Letonia": "lv",
+  "Líbano": "lb",
+  "Lesoto": "ls",
+  "Liberia": "lr",
+  "Libia": "ly",
+  "Liechtenstein": "li",
+  "Lituania": "lt",
+  "Luxemburgo": "lu",
+  "Madagascar": "mg",
+  "Malawi": "mw",
+  "Malasia": "my",
+  "Maldivas": "mv",
+  "Malí": "ml",
+  "Malta": "mt",
+  "Islas Marshall": "mh",
+  "Mauritania": "mr",
+  "Mauricio": "mu",
+  "México": "mx",
+  "Micronesia": "fm",
+  "Moldavia": "md",
+  "Mónaco": "mc",
+  "Mongolia": "mn",
+  "Montenegro": "me",
+  "Marruecos": "ma",
+  "Mozambique": "mz",
+  "Myanmar": "mm",
+  "Namibia": "na",
+  "Nauru": "nr",
+  "Nepal": "np",
+  "Países Bajos": "nl",
+  "Nueva Zelanda": "nz",
+  "Nicaragua": "ni",
+  "Níger": "ne",
+  "Nigeria": "ng",
+  "Noruega": "no",
+  "Omán": "om",
+  "Pakistán": "pk",
+  "Palau": "pw",
+  "Panamá": "pa",
+  "Papúa Nueva Guinea": "pg",
+  "Paraguay": "py",
+  "Perú": "pe",
+  "Filipinas": "ph",
+  "Polonia": "pl",
+  "Portugal": "pt",
+  "Catar": "qa",
+  "Rumanía": "ro",
+  "Rusia": "ru",
+  "Ruanda": "rw",
+  "San Cristóbal y Nieves": "kn",
+  "Santa Lucía": "lc",
+  "San Vicente y las Granadinas": "vc",
+  "Samoa": "ws",
+  "San Marino": "sm",
+  "Santo Tomé y Príncipe": "st",
+  "Arabia Saudita": "sa",
+  "Senegal": "sn",
+  "Serbia": "rs",
+  "Seychelles": "sc",
+  "Sierra Leona": "sl",
+  "Singapur": "sg",
+  "Eslovaquia": "sk",
+  "Eslovenia": "si",
+  "Islas Salomón": "sb",
+  "Somalia": "so",
+  "Sudáfrica": "za",
+  "Sudán": "sd",
+  "Sudán del Sur": "ss",
+  "España": "es",
+  "Sri Lanka": "lk",
+  "Sudán": "sd",
+  "Surinam": "sr",
+  "Suecia": "se",
+  "Suiza": "ch",
+  "Siria": "sy",
+  "Taiwán": "tw",
+  "Tayikistán": "tj",
+  "Tanzania": "tz",
+  "Tailandia": "th",
+  "Timor Oriental": "tl",
+  "Togo": "tg",
+  "Tonga": "to",
+  "Trinidad y Tobago": "tt",
+  "Túnez": "tn",
+  "Turquía": "tr",
+  "Turkmenistán": "tm",
+  "Tuvalu": "tv",
+  "Uganda": "ug",
+  "Ucrania": "ua",
+  "Emiratos Árabes Unidos": "ae",
+  "Reino Unido": "gb",
+  "Estados Unidos": "us",
+  "Uruguay": "uy",
+  "Uzbekistán": "uz",
+  "Vanuatu": "vu",
+  "Vaticano": "va",
+  "Venezuela": "ve",
+  "Vietnam": "vn",
+  "Yemen": "ye",
+  "Zambia": "zm",
+  "Zimbabue": "zw"
+};
+
+  // Asignar la bandera a cada observador
+  document.querySelectorAll('[id^="flag-"]').forEach(img => {
+    const pais = img.nextElementSibling.innerText.trim();
+    const codigo = countryCodes[pais];
+    if (codigo) {
+      img.src = `https://flagcdn.com/24x18/${codigo}.png`;
+    } else {
+      img.alt = "Sin bandera";
+    }
+  });
+</script>
 
 </body>
 </html>

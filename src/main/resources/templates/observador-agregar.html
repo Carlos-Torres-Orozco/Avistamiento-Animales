@@ -4,25 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agregar Observador</title>
-  <link rel="stylesheet" th:href="@{/style/style-general.css}">
-  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+  <link rel="stylesheet" th:href="@{/style/style-animales-form.css}">
 </head>
-<body>
+<body class="modern-page">
 
-<header>
+<header class="header">
   <h1>Agregar Observador</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/observadores" class="activo">Observadores</a></li>
+      <li><a href="/observadores" class="btn-regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
+<main class="contenido">
+  <section class="tarjeta">
     <h2>Formulario de Nuevo Observador</h2>
-    <form th:action="@{/observadores/guardar}" th:object="${observador}" method="post" class="formulario">
+
+    <form th:action="@{/observadores/guardarObser}" th:object="${observador}" method="post" class="formulario">
       
       <div class="campo">
         <label>Nombre:</label>
@@ -41,7 +40,10 @@
 
       <div class="campo">
         <label>País:</label>
-        <input type="text" th:field="*{pais}" placeholder="País de origen" required />
+        <select th:field="*{pais}" required>
+          <option value="" disabled selected>Selecciona un país</option>
+          <option th:each="pais : ${paises}" th:value="${pais}" th:text="${pais}"></option>
+        </select>
       </div>
 
       <div class="campo">
@@ -49,16 +51,23 @@
         <input type="text" th:field="*{institucion}" placeholder="Institución a la que pertenece" required />
       </div>
 
+      <div class="campo">
+        <label>Contraseña:</label>
+        <input type="password" th:field="*{contrasena}" placeholder="Ingresa tu contraseña" required />
+      </div>
+
+      <input type="hidden" name="rol" value="observador"/>
+
       <div class="botones-formulario">
         <button type="submit" class="boton agregar">Guardar</button>
         <a href="/observadores" class="boton cancelar">Cancelar</a>
       </div>
-      
+
     </form>
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
 

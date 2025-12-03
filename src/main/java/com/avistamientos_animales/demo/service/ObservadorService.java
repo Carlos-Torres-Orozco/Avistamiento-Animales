@@ -47,8 +47,24 @@ public class ObservadorService {
     }
 
     public void actualizar(Observador observador) {
-        observadorRepository.save(observador); // JPA actualiza si el ID ya existe
-    }
+    // Recuperar el observador existente de la base de datos
+    Observador existente = observadorRepository.findById(observador.getIdObservador())
+        .orElseThrow(() -> new RuntimeException("Observador no encontrado"));
+
+    // Actualizar solo los campos editables
+    existente.setNombre(observador.getNombre());
+    existente.setApellido(observador.getApellido());
+    existente.setCorreo(observador.getCorreo());
+    existente.setPais(observador.getPais());
+    existente.setInstitucion(observador.getInstitucion());
+    existente.setRol(observador.getRol());
+
+    existente.setContrasena(existente.getContrasena());
+
+    // Guardar los cambios
+    observadorRepository.save(existente);
+}
+
 
     public Observador buscarPorCorreo(String correo) {
         return observadorRepository.findByCorreo(correo);

@@ -31,8 +31,15 @@
 
       <div class="campo">
         <label>País:</label>
-        <input type="text" th:field="*{pais}" placeholder="País" required />
+        <select th:field="*{pais}" required>
+          <option value="" disabled selected>Selecciona un país</option>
+          <option th:each="pais : ${paises}" 
+                  th:value="${pais}" 
+                  th:text="${pais}">
+          </option>
+        </select>
       </div>
+
 
       <div class="campo">
         <label>Región:</label>

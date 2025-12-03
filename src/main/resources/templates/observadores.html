@@ -1,54 +1,51 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro de Observadores</title>
-  <!-- Estilos generales -->
-  <link rel="stylesheet" href="style/style-general.css">
-  <!-- Estilo personalizado para observadores -->
-  <link rel="stylesheet" href="style/style-observadores.css">
+  <link rel="stylesheet" href="/style/style-general.css">
+  <link rel="stylesheet" href="/style/style-animales.css"> <!-- reutiliza estilo moderno -->
 </head>
-<body>
+<body class="modern-page" th:attr="data-rol=${usuario != null ? usuario.rol : 'NULL'}">
 
-  <header>
-    <h1>Registro de Observadores</h1>
-    <nav>
-      <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/gestion">Gestión</a></li>
-        <li><a href="/especies">Especies</a></li>
-        <li><a href="/animales">Animales</a></li>
-        <li><a href="/avistamientos">Avistamientos</a></li>
-        <li><a href="/ubicaciones">Ubicaciones</a></li>
-        <li><a href="/observadores" class="activo">Observadores</a></li>
-      </ul>
-    </nav>
-  </header>
+<header class="header">
+  <h1>Registro de Observadores</h1>
+  <nav class="nav">
+    <ul>
+      <li>
+        <a th:if="${usuario != null and usuario.rol == 'admin'}"
+           th:href="@{/admin/home}" 
+           class="btn-regresar"
+           onclick="console.log('Rol del usuario:', this.closest('body').dataset.rol)">
+           Regresar
+        </a>
+        <a th:if="${usuario == null or usuario.rol != 'admin'}"
+           th:href="@{/observador/home}" 
+           class="btn-regresar"
+           onclick="console.log('Rol del usuario:', this.closest('body').dataset.rol)">
+           Regresar
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
 
-  <main>
-    <section class="contenido">
-      <h2>Administrar Observadores</h2>
+<main class="contenido">
+  <section class="tarjeta">
+    <h2>Administrar Observadores</h2>
+    <p>Selecciona una acción para gestionar los observadores registrados en el sistema:</p>
 
-      <!-- Submenú CRUD -->
-      <div class="submenu">
-        <button onclick="location.href='/observadores/agregar'">Agregar</button>
-        <button onclick="location.href='/observadores/consultar'">Consultar / Actualizar / Eliminar</button>
-      </div>
+    <div class="grid-modulos">
+      <button class="modulo" onclick="location.href='/observadores/agregar'">➕ Agregar Observador</button>
+      <button class="modulo" onclick="location.href='/observadores/consultar'">📄 Consultar / Actualizar / Eliminar</button>
+    </div>
+  </section>
+</main>
 
-      <!-- Contenido dinámico -->
-      <div class="contenido-dinamico">
-        <p>
-          Aquí puedes registrar y gestionar los observadores.
-          Usa los botones del submenú para realizar las acciones correspondientes.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Sistema de Avistamientos</p>
-  </footer>
+<footer class="footer">
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
 
 </body>
 </html>
