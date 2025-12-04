@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Multimedia del Avistamiento</title>
-  <link rel="stylesheet" href="/style/style-general.css">
-  <link rel="stylesheet" href="/style/style-tablas.css">
+  <link rel="stylesheet" href="/style/style-multimedia.css">
 </head>
-<body>
+<body class="multimedia-page">
 
-<header>
+<header class="header">
   <h1>Archivos Multimedia</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/avistamientos">Volver a Avistamientos</a></li>
+      <li><a href="/avistamientos">Regresar a Avistamientos</a></li>
     </ul>
   </nav>
 </header>
@@ -22,43 +20,32 @@
   <section class="contenido">
     <h2 th:text="'Multimedia del Avistamiento: ' + ${avistamiento.idAvistamiento}"></h2>
 
-    <table class="tabla-datos">
-        <thead>
-            <tr>
-            <th>ID Imagen</th>
-            <th>Tipo</th>
-            <th>Archivo</th>
-            <th>Fecha</th>
-            <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="m : ${multimedias}">
-            <td th:text="${m.idImagen}"></td>
-            <td th:text="${m.tipo}"></td>
-            <td>
-                <a th:href="${m.archivo}" target="_blank" th:text="${m.archivo}"></a>
-            </td>
-            <td th:text="${m.fecha}"></td>
-            <td>
-                <a th:href="@{'/multimedia/eliminar/' + ${m.idImagen}}" 
-                class="boton eliminar"
-                th:onclick="'return confirm(\'¿Eliminar este archivo multimedia? Si es el último, también se eliminará el avistamiento.\')'">
-                Eliminar
-                </a>
-            </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="grid-cards">
+      <div class="card-multimedia" th:each="m : ${multimedias}">
+        <!-- Mostrar imagen si es tipo "Imagen" -->
+       <img th:if="${m.tipo != null and m.tipo.toLowerCase().contains('image')}"
+     th:src="@{/uploads/{archivo}(archivo=${m.archivo})}"
+     th:alt="${m.archivo}">
 
-    <div class="botones-formulario">
-      <a href="/avistamientos/consultar" class="boton cancelar">Regresar</a>
+
+        
+        <h3 th:text="${m.tipo}"></h3>
+        <p th:text="${m.archivo}"></p>
+        <p th:text="${m.fecha}"></p>
+
+        <div class="botones-card">
+          <a th:href="@{'/multimedia/eliminar/' + ${m.idImagen}}" 
+             class="btn eliminar"
+             th:onclick="'return confirm(\'¿Eliminar este archivo multimedia? Si es el último, también se eliminará el avistamiento.\')'">
+             Eliminar
+          </a>
+        </div>
+      </div>
     </div>
-
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
 

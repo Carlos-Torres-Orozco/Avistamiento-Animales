@@ -1,7 +1,7 @@
 /* ---------------------------
-   Estilos generales para páginas modernas
+   Estilos generales para página Multimedia
 --------------------------- */
-body.modern-page {
+body.multimedia-page {
   margin: 0;
   font-family: "Segoe UI", Tahoma, sans-serif;
   background-color: #f4f7f9;
@@ -30,9 +30,7 @@ body.modern-page {
   font-size: 26px;
 }
 
-/* ---------------------------
-   Navegación dentro del header
---------------------------- */
+/* Navegación */
 .nav ul {
   list-style: none;
   display: flex;
@@ -63,7 +61,8 @@ body.modern-page {
   flex: 1;
   padding: 40px 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ---------------------------
@@ -75,50 +74,63 @@ body.modern-page {
   gap: 20px;
   width: 100%;
   max-width: 1200px;
+  margin-top: 20px;
 }
 
 /* ---------------------------
-   Tarjeta individual
+   Card individual
 --------------------------- */
-.card-animal {
+.card-multimedia {
   background-color: white;
-  padding: 25px;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card-animal:hover {
+.card-multimedia:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* Línea bajo el título */
-.card-animal h3 {
-  margin: 0 0 10px 0;
+/* Imagen dentro de la card */
+.card-multimedia img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Título tipo multimedia */
+.card-multimedia h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
   padding-bottom: 5px;
   border-bottom: 2px solid #e5e7eb;
+  width: 100%;
+  text-align: center;
 }
 
-/* Diferenciación de animales protegidos */
-.card-animal.protegido {
-  border-left: 5px solid #2563eb;
-}
-.card-animal.no-protegido {
-  border-left: 5px solid #f59e0b;
+/* Datos adicionales */
+.card-multimedia p {
+  margin: 0;
+  font-size: 14px;
+  color: #374151;
+  text-align: center;
 }
 
-/* ---------------------------
-   Botones dentro de las tarjetas
---------------------------- */
+/* Botones dentro de la card */
 .botones-card {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin-top: 12px;
+  width: 100%;
 }
 
 .btn {
@@ -127,18 +139,10 @@ body.modern-page {
   font-weight: 600;
   text-decoration: none;
   text-align: center;
-  transition: 0.2s;
   border: none;
   cursor: pointer;
-}
-
-.btn.editar {
-  background-color: #2563eb;
-  color: white;
-}
-
-.btn.editar:hover {
-  background-color: #1d4ed8;
+  transition: 0.2s;
+  flex: 1;
 }
 
 .btn.eliminar {
@@ -150,33 +154,21 @@ body.modern-page {
   background-color: #dc2626;
 }
 
-/* ---------------------------
-   Footer con 3 botones iguales
---------------------------- */
-.footer {
-  margin-top: 40px;
-  display: flex;
-  justify-content: space-between;
-  background-color: #1f2937;
-}
-
-.footer a {
-  flex: 1;
-  padding: 15px 0;
-  text-align: center;
-  text-decoration: none;
-  color: white;
+/* Botón de regresar */
+.boton.cancelar {
+  background-color: #374151;
+  color: #e5e7eb;
+  padding: 12px 24px;
+  border-radius: 8px;
   font-weight: 600;
-  border-right: 1px solid #374151;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
   transition: 0.2s;
 }
 
-.footer a:last-child {
-  border-right: none;
-}
-
-.footer a:hover {
-  background-color: #374151;
+.boton.cancelar:hover {
+  background-color: #4b5563;
 }
 
 /* ---------------------------
@@ -187,16 +179,7 @@ body.modern-page {
     grid-template-columns: 1fr;
   }
 
-  .footer {
+  .botones-card {
     flex-direction: column;
-  }
-
-  .footer a {
-    border-right: none;
-    border-bottom: 1px solid #374151;
-  }
-
-  .footer a:last-child {
-    border-bottom: none;
   }
 }

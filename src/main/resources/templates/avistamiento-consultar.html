@@ -4,63 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consultar Avistamientos</title>
-  <link rel="stylesheet" href="/style/style-general.css">
-  <link rel="stylesheet" href="/style/style-tablas.css">
+  <link rel="stylesheet" th:href="@{/style/style-animales-cards.css}">
 </head>
-<body>
+<body class="modern-page">
 
-<header>
+<header class="header">
   <h1>Lista de Avistamientos</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/avistamientos" class="activo">Avistamientos</a></li>
-      <li><a href="/avistamientos/agregar">Agregar</a></li>
+      <li><a href="/avistamientos" class="btn-regresar">Regresar</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
-    <h2>Registros de Avistamientos</h2>
+<main class="contenido">
+  <section class="grid-cards">
 
-    <table class="tabla-datos">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Tipo</th>
-          <th>Clima</th>
-          <th>Descripción</th>
-          <th>Cantidad</th>
-          <th>Animal</th>
-          <th>Observador</th>
-          <th>Ubicación</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="av : ${avistamientos}">
-          <td th:text="${av.idAvistamiento}"></td>
-          <td th:text="${av.tipo}"></td>
-          <td th:text="${av.clima}"></td>
-          <td th:text="${av.descripcion}"></td>
-          <td th:text="${av.cantidad}"></td>
-          <td th:text="${av.animal != null ? av.animal.nombreComun : '—'}"></td>
-          <td th:text="${av.observador != null ? av.observador.nombre : '—'}"></td>
-          <td th:text="${av.ubicacion != null ? av.ubicacion.nombre : '—'}"></td>
-          <td>
-            <a th:href="@{'/avistamientos/editar/' + ${av.idAvistamiento}}" class="boton editar">Editar</a>
-            <a th:href="@{'/avistamientos/eliminar/' + ${av.idAvistamiento}}" class="boton eliminar"
-            onclick="return confirm('¿Seguro que deseas eliminar este avistamiento y sus registros asociados (multimedia, etc.)?')">Eliminar</a>
-            <a th:href="@{'/avistamientos/multimedia/' + ${av.idAvistamiento}}" class="boton ver">Ver Multimedia</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div th:each="av : ${avistamientos}" class="card-animal">
+      
+      <h3 th:text="${av.animal != null ? av.animal.nombreComun : '—'}">Animal</h3>
+
+      <p><strong>ID:</strong> <span th:text="${av.idAvistamiento}"></span></p>
+      <p><strong>Tipo:</strong> <span th:text="${av.tipo}"></span></p>
+      <p><strong>Clima:</strong> <span th:text="${av.clima}"></span></p>
+      <p><strong>Descripción:</strong> <span th:text="${av.descripcion}"></span></p>
+      <p><strong>Cantidad:</strong> <span th:text="${av.cantidad}"></span></p>
+      <p><strong>Observador:</strong> <span th:text="${av.observador != null ? av.observador.nombre : '—'}"></span></p>
+      <p><strong>Ubicación:</strong> <span th:text="${av.ubicacion != null ? av.ubicacion.nombre : '—'}"></span></p>
+
+      <div class="botones-card">
+        <a th:href="@{'/avistamientos/editar/' + ${av.idAvistamiento}}" class="btn editar">Editar</a>
+        <a th:href="@{'/avistamientos/eliminar/' + ${av.idAvistamiento}}" 
+           class="btn eliminar"
+           onclick="return confirm('¿Seguro que deseas eliminar este avistamiento y sus registros asociados?')">Eliminar</a>
+        <a th:href="@{'/avistamientos/multimedia/' + ${av.idAvistamiento}}" class="btn ver">Ver Multimedia</a>
+      </div>
+
+    </div>
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
 

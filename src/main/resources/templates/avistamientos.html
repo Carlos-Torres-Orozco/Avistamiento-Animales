@@ -1,64 +1,48 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestión de Avistamientos</title>
-  <!-- Estilo general -->
-  <link rel="stylesheet" href="/style/style-general.css">
-  <!-- Estilo específico para avistamientos -->
-  <link rel="stylesheet" href="style/style-avistamiento.css">
+  <link rel="stylesheet" th:href="@{/style/style-animales.css}">
 </head>
-<body>
+<body class="modern-page" th:attr="data-rol=${usuario != null ? usuario.rol : 'NULL'}">
 
-  <header>
+<header class="header">
   <h1>Gestión de Avistamientos</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/dashboard-admin">Gestión</a></li>
-
-      <!-- Visible solo para admin -->
-      <li th:if="${usuario.rol == 'admin'}"><a href="/especies">Especies</a></li>
-      <li><a href="/animales">Animales</a></li>
-      <li><a href="/avistamientos" class="activo">Avistamientos</a></li>
-      <li><a href="/ubicaciones">Ubicaciones</a></li>
-
-      <!-- Visible solo para admin -->
-      <li th:if="${usuario.rol == 'admin'}"><a href="/observadores">Observadores</a></li>
-
-      <!-- Logout -->
-      <li style="float:right">
-        <a th:href="@{/logout}" class="logout-btn">Cerrar sesión</a>
+      <li>
+        <a th:if="${usuario != null and usuario.rol == 'admin'}"
+           th:href="@{/admin/home}" 
+           class="btn-regresar">
+           Regresar
+        </a>
+        <a th:if="${usuario == null or usuario.rol != 'admin'}"
+           th:href="@{/observador/home}" 
+           class="btn-regresar">
+           Regresar
+        </a>
       </li>
     </ul>
   </nav>
 </header>
 
+<main class="contenido">
+  <section class="tarjeta">
+    <h2>Administrar Avistamientos</h2>
+    <p>Selecciona una acción para gestionar los avistamientos registrados en el sistema:</p>
 
-  <main>
-    <section class="contenido">
-      <h2>Administrar Avistamientos</h2>
+    <div class="grid-modulos">
+      <button class="modulo" onclick="location.href='/avistamientos/agregar'">➕ Agregar Avistamiento</button>
+      <button class="modulo" onclick="location.href='/avistamientos/consultar'">📄 Consultar / Actualizar / Eliminar</button>
+    </div>
+  </section>
+</main>
 
-      <!-- Submenú CRUD -->
-      <div class="submenu">
-        <button onclick="location.href='/avistamientos/agregar'">Agregar</button>
-        <button onclick="location.href='/avistamientos/consultar'">Consultar / Actualizar / Eliminar</button>
-      </div>
-
-      <!-- Contenido dinámico -->
-      <div class="contenido-dinamico">
-        <p>
-          Aquí podrás registrar y gestionar todos los avistamientos realizados por los observadores.
-          Utiliza los botones del submenú para comenzar.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Sistema de Avistamientos</p>
-  </footer>
+<footer class="footer">
+  <p>© 2025 Sistema de Avistamientos</p>
+</footer>
 
 </body>
 </html>

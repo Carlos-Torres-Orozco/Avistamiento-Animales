@@ -68,4 +68,5 @@ public class AvistamientoService {
     public void actualizar(Avistamiento avistamiento) {
         avistamientoRepository.save(avistamiento); // JPA actualiza si el ID ya existe
     }
+    
 }

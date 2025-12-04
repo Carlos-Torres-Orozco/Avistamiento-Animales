@@ -1,5 +1,6 @@
 package com.avistamientos_animales.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -43,8 +44,7 @@ public class Avistamiento {
     private Ubicacion ubicacion;
 
     @OneToMany(mappedBy = "avistamiento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Multimedia> multimedias;
-
+    private List<Multimedia> multimedias = new ArrayList<>();
     // --- Getters y Setters ---
 
     public String getIdAvistamiento() {

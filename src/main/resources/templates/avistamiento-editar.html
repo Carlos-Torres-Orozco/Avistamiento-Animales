@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Editar Avistamiento</title>
-  <link rel="stylesheet" th:href="@{/style/style-general.css}">
-  <link rel="stylesheet" th:href="@{/style/style-form-obser.css}">
+  <link rel="stylesheet" th:href="@{/style/style-animales-form.css}">
 </head>
-<body>
+<body class="modern-page">
 
-<header>
+<header class="header">
   <h1>Editar Avistamiento</h1>
-  <nav>
+  <nav class="nav">
     <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/avistamientos">Volver</a></li>
+      <li><a href="/avistamientos" class="btn-regresar">Volver</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <section class="contenido">
+<main class="contenido">
+  <section class="tarjeta">
     <h2>Actualizar Datos del Avistamiento</h2>
 
-    <form th:action="@{/avistamientos/actualizar}" th:object="${avistamiento}" method="post" class="formulario">
-      
+    <form th:action="@{/avistamientos/actualizar}" th:object="${avistamiento}"
+      method="post" class="formulario" enctype="multipart/form-data">
+
       <!-- ID no editable -->
       <div class="campo">
         <label>ID (no editable):</label>
@@ -67,18 +66,8 @@
         </select>
       </div>
 
-      <!-- Observador -->
-      <div class="campo">
-        <label>Observador:</label>
-        <select th:field="*{observador}" required>
-          <option value="" disabled>Seleccione un observador</option>
-          <option th:each="obs : ${observadores}"
-                  th:value="${obs.idObservador}"
-                  th:text="${obs.nombre}"
-                  th:selected="${avistamiento.observador != null and avistamiento.observador.idObservador == obs.idObservador}">
-          </option>
-        </select>
-      </div>
+      <!-- Observador (oculto, se llena automáticamente) -->
+      <input type="hidden" th:field="*{observador}" th:value="${usuario.idObservador}" />
 
       <!-- Ubicación -->
       <div class="campo">
@@ -93,6 +82,31 @@
         </select>
       </div>
 
+      <!-- Multimedia existente -->
+      <div class="campo">
+        <label>Multimedia existente:</label>
+        <div th:each="multi, iterStat : ${avistamiento.multimedias}" class="multimedia-item">
+          <input type="text" th:value="${multi.tipo}" readonly placeholder="Tipo">
+          <input type="text" th:value="${multi.archivo}" readonly placeholder="Archivo">
+          <input type="date" th:value="${multi.fecha}" readonly>
+        </div>
+      </div>
+
+      <div class="campo">
+    <label>Multimedia existente:</label>
+
+    <div class="multimedia-item" th:each="multi : ${avistamiento.multimedias}">
+        <p><strong>Archivo:</strong> <span th:text="${multi.archivo}"></span></p>
+        <p><strong>Tipo:</strong> <span th:text="${multi.tipo}"></span></p>
+        <p><strong>Fecha:</strong> <span th:text="${multi.fecha}"></span></p>
+    </div>
+</div>
+
+<div class="campo">
+    <label>Agregar nuevas imágenes:</label>
+    <input type="file" name="archivos" multiple accept="image/*">
+</div>
+
       <!-- Botones -->
       <div class="botones-formulario">
         <button type="submit" class="boton agregar">Guardar cambios</button>
@@ -106,5 +120,25 @@
 <footer>
   <p>© 2025 Sistema de Avistamientos</p>
 </footer>
+
+<script>
+let index = /*[[${avistamiento.multimedias.size()}]]*/ 0;
+
+function agregarMultimedia() {
+    const container = document.getElementById('multimedia-container');
+    const div = document.createElement('div');
+    div.classList.add('multimedia-item');
+    div.innerHTML = `
+        <label>Tipo:</label>
+        <input type="text" name="multimedias[${index}].tipo" required>
+        <label>Archivo (URL o nombre):</label>
+        <input type="text" name="multimedias[${index}].archivo" required>
+        <label>Fecha:</label>
+        <input type="date" name="multimedias[${index}].fecha" required>
+    `;
+    container.appendChild(div);
+    index++;
+}
+</script>
 </body>
 </html>

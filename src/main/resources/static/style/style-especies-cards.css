@@ -1,6 +1,5 @@
 /* ======================================= */
-/* Estilos independientes de la página de Especies */
-/* Inspirado en el panel de administración */
+/* Estilos modernos para la página de Especies */
 /* ======================================= */
 
 /* Body */
@@ -9,6 +8,9 @@ body.modern-page {
   font-family: "Segoe UI", Tahoma, sans-serif;
   background-color: #f4f7f9;
   color: #111827;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------------- Header ---------------- */
@@ -50,6 +52,7 @@ header nav .activo {
 
 /* ---------------- Main / Grid ---------------- */
 .contenido {
+  flex: 1;
   padding: 40px 20px;
   display: flex;
   justify-content: center;
@@ -81,10 +84,13 @@ header nav .activo {
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
+/* Línea bajo el título */
 .card-especie h3 {
-  margin: 0 0 6px;
-  color: #111827;
+  margin: 0 0 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #e5e7eb;
   font-size: 20px;
+  color: #111827;
 }
 
 .card-especie p {
@@ -93,6 +99,7 @@ header nav .activo {
   font-size: 14px;
 }
 
+/* ---------------- Botones dentro de las cards ---------------- */
 .botones-card {
   display: flex;
   gap: 10px;
@@ -100,7 +107,6 @@ header nav .activo {
   flex-wrap: wrap;
 }
 
-/* ---------------- Botones ---------------- */
 .btn {
   padding: 8px 16px;
   border-radius: 8px;
@@ -142,32 +148,44 @@ header nav .activo {
   background: #4b5563;
 }
 
-/* ---------------- Footer ---------------- */
+/* Footer con 2 botones iguales */
 footer {
   margin-top: 40px;
-  text-align: center;
-  padding: 20px;
+  display: flex;
   background-color: #1f2937;
-  color: white;
 }
 
-/* ---------------- Responsive ---------------- */
+footer a {
+  flex: 1;
+  padding: 15px 0;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  border-right: 1px solid #374151;
+  transition: 0.2s;
+}
+
+footer a:last-child {
+  border-right: none; /* El último no tiene borde derecho */
+}
+
+footer a:hover {
+  background-color: #374151;
+}
+
+/* Responsive */
 @media (max-width: 700px) {
-  .grid-cards {
-    grid-template-columns: 1fr;
-    padding: 10px;
-    gap: 15px;
-  }
-
-  .card-especie {
-    padding: 16px;
-  }
-
-  .botones-card {
+  footer {
     flex-direction: column;
   }
 
-  .btn {
-    width: 100%;
+  footer a {
+    border-right: none;
+    border-bottom: 1px solid #374151;
+  }
+
+  footer a:last-child {
+    border-bottom: none;
   }
 }
