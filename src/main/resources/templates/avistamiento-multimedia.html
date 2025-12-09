@@ -18,7 +18,7 @@
 
 <main>
   <section class="contenido">
-    <h2 th:text="'Multimedia del Avistamiento: ' + ${avistamiento.idAvistamiento}"></h2>
+    <h2 th:text="'Multimedia del Avistamiento: ' + ${avistamiento.descripcion}"></h2>
 
     <div class="grid-cards">
       <div class="card-multimedia" th:each="m : ${multimedias}">
@@ -30,7 +30,6 @@
 
         
         <h3 th:text="${m.tipo}"></h3>
-        <p th:text="${m.archivo}"></p>
         <p th:text="${m.fecha}"></p>
 
         <div class="botones-card">
