@@ -76,8 +76,10 @@
 
   <div class="campo">
     <label>Archivos Multimedia:</label>
-    <input type="file" name="archivos" multiple accept="image/*,video/*">
+    <input type="file" name="archivos" multiple accept="image/*" onchange="previewImages(event)">
 </div>
+
+<div id="preview" style="display:flex; flex-wrap:wrap; gap:10px; margin-top:15px;"></div>
 
   <div class="botones-formulario">
     <button type="submit" class="boton agregar">Guardar</button>
@@ -93,16 +95,23 @@
 </footer>
 
 <script>
-let index = 1;
+function previewImages(event) {
+    const preview = document.getElementById('preview');
+    preview.innerHTML = ""; // limpia previas
 
-function agregarMultimedia() {
-    const container = document.getElementById('multimedia-container');
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.name = `multimedias[${index}].archivo`;
-    input.accept = "image/*,video/*";
-    container.appendChild(input);
-    index++;
+    for (const file of event.target.files) {
+        if (!file.type.startsWith("image/")) continue;
+
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.style.width = "120px";
+        img.style.height = "120px";
+        img.style.objectFit = "cover";
+        img.style.borderRadius = "10px";
+        img.style.boxShadow = "0px 2px 5px rgba(0,0,0,0.25)";
+
+        preview.appendChild(img);
+    }
 }
 </script>
 

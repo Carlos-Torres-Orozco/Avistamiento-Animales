@@ -217,7 +217,7 @@ public String actualizar(
 
     // Recupera al usuario desde Spring Security
     Observador usuario = observadorService.buscarPorCorreo(principal.getName());
-
+            
     model.addAttribute("usuario", usuario);
     return "avistamientos"; // tu avistamientos.html
 }
